@@ -14,27 +14,34 @@ int main() {
     bool playing = true;
     int key = 0;
 
+    int actionCounter = 0;
+
     cout << "Que comecem os jogos..." << endl << endl;
 
     while (playing) {
         displayMatrix(matrix);
+        showCounter(actionCounter);
         key = 0;
 
         switch ((key = getch())) {
         case KEY_UP:
             down(matrix, line, column);
+            actionCounter++;
             break;
 
         case KEY_DOWN:
             up(matrix, line, column);
+            actionCounter++;
             break;
 
         case KEY_RIGHT:
             left(matrix, line, column);
+            actionCounter++;
             break;
 
         case KEY_LEFT:
             right(matrix, line, column);
+            actionCounter++;
             break;
         
         case KEY_ESCAPE:
