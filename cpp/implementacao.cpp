@@ -1,43 +1,51 @@
 #include "cabecalho.h"
 
-void up(int matrix[tam][tam], int &line, int &column) {
+bool up(int matrix[tam][tam], int &line, int &column) {
     // [i][j] => [i-1][j]
     if (line - 1 >= 0) {
         int aux = matrix[line][column];
         matrix[line][column] = matrix[line - 1][column];
         matrix[line - 1][column] = aux;
         line--;
+        return true;
     }
+    return false;
 }
 
-void down(int matrix[tam][tam], int &line, int &column) {
+bool down(int matrix[tam][tam], int &line, int &column) {
     // [i][j] => [i+1][j]
     if (line + 1 <= tam - 1) {
         int aux = matrix[line][column];
         matrix[line][column] = matrix[line + 1][column];
         matrix[line + 1][column] = aux;
         line++;
+        return true;
     }
+    return false;
 }
 
-void left(int matrix[tam][tam], int &line, int &column) {
+bool left(int matrix[tam][tam], int &line, int &column) {
     // [i][j] => [i][j-1]
     if (column - 1 >= 0) {
         int aux = matrix[line][column];
         matrix[line][column] = matrix[line][column - 1];
         matrix[line][column - 1] = aux;
         column--;
-    }    
+        return true;
+    }  
+    return false;  
 }
 
-void right(int matrix[tam][tam], int &line, int &column) {
+bool right(int matrix[tam][tam], int &line, int &column) {
     // [i][j] => [i][j+1]
     if (column + 1 <= tam - 1) {
         int aux = matrix[line][column];
         matrix[line][column] = matrix[line][column + 1];
         matrix[line][column + 1] = aux;
         column++;
+        return true;
     }
+    return false;
 }
 
 void displayMatrix(int matrix[tam][tam]) {

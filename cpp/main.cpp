@@ -25,23 +25,23 @@ int main() {
 
         switch ((key = getch())) {
         case KEY_UP:
-            down(matrix, line, column);
-            actionCounter++;
+            if (down(matrix, line, column)) 
+                actionCounter++;
             break;
 
         case KEY_DOWN:
-            up(matrix, line, column);
-            actionCounter++;
+            if (up(matrix, line, column)) 
+                actionCounter++;
             break;
 
         case KEY_RIGHT:
-            left(matrix, line, column);
-            actionCounter++;
+            if (left(matrix, line, column)) 
+                actionCounter++;
             break;
 
         case KEY_LEFT:
-            right(matrix, line, column);
-            actionCounter++;
+            if (right(matrix, line, column)) 
+                actionCounter++;
             break;
         
         case KEY_ESCAPE:

@@ -21,10 +21,10 @@
 using namespace std;
 
 // Move functions
-void up(int [tam][tam], int &, int &);
-void down(int [tam][tam], int &, int &);
-void left(int [tam][tam], int &, int &);
-void right(int [tam][tam], int &, int &);
+bool up(int [tam][tam], int &, int &);
+bool down(int [tam][tam], int &, int &);
+bool left(int [tam][tam], int &, int &);
+bool right(int [tam][tam], int &, int &);
 
 // Display the matrix function
 void displayMatrix(int [tam][tam]);
