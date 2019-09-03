@@ -2,35 +2,42 @@
 
 void up(int matrix[tam][tam], int &line, int &column) {
     // [i][j] => [i-1][j]
-    int aux = matrix[line][column];
-    matrix[line][column] = matrix[line - 1][column];
-    matrix[line - 1][column] = aux;
-    line--;
+    if (line - 1 >= 0) {
+        int aux = matrix[line][column];
+        matrix[line][column] = matrix[line - 1][column];
+        matrix[line - 1][column] = aux;
+        line--;
+    }
 }
 
 void down(int matrix[tam][tam], int &line, int &column) {
     // [i][j] => [i+1][j]
-    int aux = matrix[line][column];
-    matrix[line][column] = matrix[line + 1][column];
-    matrix[line + 1][column] = aux;
-    line++;
+    if (line + 1 <= tam - 1) {
+        int aux = matrix[line][column];
+        matrix[line][column] = matrix[line + 1][column];
+        matrix[line + 1][column] = aux;
+        line++;
+    }
 }
 
 void left(int matrix[tam][tam], int &line, int &column) {
     // [i][j] => [i][j-1]
-    int aux = matrix[line][column];
-    matrix[line][column] = matrix[line][column - 1];
-    matrix[line][column - 1] = aux;
-    column--;
-    
+    if (column - 1 >= 0) {
+        int aux = matrix[line][column];
+        matrix[line][column] = matrix[line][column - 1];
+        matrix[line][column - 1] = aux;
+        column--;
+    }    
 }
 
 void right(int matrix[tam][tam], int &line, int &column) {
     // [i][j] => [i][j+1]
-    int aux = matrix[line][column];
-    matrix[line][column] = matrix[line][column + 1];
-    matrix[line][column + 1] = aux;
-    column++;
+    if (column + 1 <= tam - 1) {
+        int aux = matrix[line][column];
+        matrix[line][column] = matrix[line][column + 1];
+        matrix[line][column + 1] = aux;
+        column++;
+    }
 }
 
 void displayMatrix(int matrix[tam][tam]) {

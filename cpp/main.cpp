@@ -22,22 +22,18 @@ int main() {
 
         switch ((key = getch())) {
         case KEY_UP:
-            // cout << "Movendo para cima" << endl;
             down(matrix, line, column);
             break;
 
         case KEY_DOWN:
-            // cout << "Movendo para baixo" << endl;
             up(matrix, line, column);
             break;
 
         case KEY_RIGHT:
-            // cout << "Movendo para direita" << endl;
             left(matrix, line, column);
             break;
 
         case KEY_LEFT:
-            // cout << "Movendo para esquerda" << endl;
             right(matrix, line, column);
             break;
         
