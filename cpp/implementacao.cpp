@@ -72,3 +72,7 @@ void fillMatrix(int matrix[tam][tam]) {
         matrix[i / tam][ i % tam] = array[i];
     }
 }
+
+void showCounter(int counter){
+    cout<<"Numero de jogadas: "<<counter<<endl;
+}

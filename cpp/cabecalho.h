@@ -32,4 +32,7 @@ void displayMatrix(int [tam][tam]);
 // Filling the matrix function
 void fillMatrix(int [tam][tam]);
 
+//Display Action Counter
+void showCounter(int counter);
+
 #endif
