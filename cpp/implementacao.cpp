@@ -1,47 +1,46 @@
 #include "cabecalho.h"
 
-void up(int matriz[tam][tam], int &linha, int &coluna) {
+void up(int matrix[tam][tam], int &line, int &column) {
     // [i][j] => [i-1][j]
     cout << "up()" << endl;
-    int aux = matriz[linha][coluna];
-    matriz[linha][coluna] = matriz[linha - 1][coluna];
-    matriz[linha - 1][coluna] = aux;
-    linha--;
+    int aux = matrix[line][column];
+    matrix[line][column] = matrix[line - 1][column];
+    matrix[line - 1][column] = aux;
+    line--;
 }
 
-void down(int matriz[tam][tam], int &linha, int &coluna) {
+void down(int matrix[tam][tam], int &line, int &column) {
     // [i][j] => [i+1][j]
     cout << "down()" << endl;
-    int aux = matriz[linha][coluna];
-    matriz[linha][coluna] = matriz[linha + 1][coluna];
-    matriz[linha + 1][coluna] = aux;
-    linha++;
+    int aux = matrix[line][column];
+    matrix[line][column] = matrix[line + 1][column];
+    matrix[line + 1][column] = aux;
+    line++;
 }
 
-void left(int matriz[tam][tam], int &linha, int &coluna) {
+void left(int matrix[tam][tam], int &line, int &column) {
     // [i][j] => [i][j-1]
     cout << "left()" << endl;
-    int aux = matriz[linha][coluna];
-    matriz[linha][coluna] = matriz[linha][coluna - 1];
-    matriz[linha][coluna - 1] = aux;
-    coluna--;
+    int aux = matrix[line][column];
+    matrix[line][column] = matrix[line][column - 1];
+    matrix[line][column - 1] = aux;
+    column--;
     
 }
 
-void right(int matriz[tam][tam], int &linha, int &coluna) {
+void right(int matrix[tam][tam], int &line, int &column) {
     // [i][j] => [i][j+1]
     cout << "right()" << endl;
-    int aux = matriz[linha][coluna];
-    matriz[linha][coluna] = matriz[linha][coluna + 1];
-    matriz[linha][coluna + 1] = aux;
-    coluna++;
+    int aux = matrix[line][column];
+    matrix[line][column] = matrix[line][column + 1];
+    matrix[line][column + 1] = aux;
+    column++;
 }
 
-void exibeMatriz(int matriz[tam][tam]) {
+void displayMatrix(int matrix[tam][tam]) {
     for (int i = 0; i < tam; i++) {
         for (int j = 0; j < tam; j++) {
-            printf("%.2d ", matriz[i][j]);
-            // cout << matriz[i][j] << " ";
+            printf("%.2d ", matrix[i][j]);
         }
         cout << endl;
     }
@@ -49,18 +48,18 @@ void exibeMatriz(int matriz[tam][tam]) {
     cout << endl << endl;
 }
 
-void preencheMatriz(int matriz[tam][tam]) {
+void fillMatrix(int matrix[tam][tam]) {
     int size = tam*tam - 1;
     int array[size];
 
     srand(time(NULL));
 
-    cout << "Original" << endl;
+    // Fill the array from 1 to size
     for (int i = 0; i < size; i++) {
         array[i] = i + 1;
-        cout << array[i] << " ";
     }
 
+    // Shuffle the array
     for (int i = size - 1; i > 0; i--) {
         int j = rand() % i;
         array[i] ^= array[j];
@@ -68,8 +67,8 @@ void preencheMatriz(int matriz[tam][tam]) {
         array[i] ^= array[j];
     }
 
-    cout << endl << endl;
+    // Assign the arrays values to the matrix
     for (int i = 0; i < size; i++) {
-        cout << array[i] << " ";
+        matrix[i / tam][ i % tam] = array[i];
     }
 }

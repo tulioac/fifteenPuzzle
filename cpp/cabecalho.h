@@ -6,22 +6,21 @@
 #include <stdlib.h>
 #include <time.h>
 
-// Tamanho da matriz[tam][tam]
+// Size of matrix[tam][tam]
 #define tam 4
 
 using namespace std;
 
-// Funções de movimento
+// Move functions
 void up(int [tam][tam], int &, int &);
 void down(int [tam][tam], int &, int &);
 void left(int [tam][tam], int &, int &);
 void right(int [tam][tam], int &, int &);
 
-// Função de exibição da matriz
-void exibeMatriz(int [tam][tam]);
+// Display the matrix function
+void displayMatrix(int [tam][tam]);
 
-//
-void preencheMatriz(int [tam][tam]);
-
+// Filling the matrix function
+void fillMatrix(int [tam][tam]);
 
 #endif
