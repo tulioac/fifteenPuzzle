@@ -5,9 +5,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <conio.h>
 
 // Size of matrix[tam][tam]
 #define tam 4
+
+// Numbers that represent the keyboard keys input 
+#define KEY_UP 72
+#define KEY_DOWN 80
+#define KEY_LEFT 75
+#define KEY_RIGHT 77
+#define KEY_ESCAPE 27
+
 
 using namespace std;
 

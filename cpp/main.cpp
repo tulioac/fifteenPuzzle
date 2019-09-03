@@ -8,34 +8,51 @@ int main() {
     int matrix[tam][tam] = {100};
 
     fillMatrix(matrix);
+    int line = tam - 1;
+    int column = tam - 1;
 
-    // 01 02 03 04
-    // 05 06 07 08
-    // 09 10 11 12
-    // 13 14 15 00
+    bool playing = true;
+    int key = 0;
 
-    /*int linha = tam - 1;
-    int coluna = tam - 1;
+    cout << "Que comecem os jogos..." << endl << endl;
 
-    cout << "Inicial" << endl;
-    cout << "Linha " << linha << " / Coluna " << coluna << endl;
-    exibeMatriz(matriz);
+    while (playing) {
+        displayMatrix(matrix);
+        key = 0;
 
-    up(matriz, linha, coluna);
-    cout << "Linha " << linha << " / Coluna " << coluna << endl;
-    exibeMatriz(matriz);
+        switch ((key = getch())) {
+        case KEY_UP:
+            // cout << "Movendo para cima" << endl;
+            down(matrix, line, column);
+            break;
 
-    left(matriz, linha, coluna);
-    cout << "Linha " << linha << " / Coluna " << coluna << endl;
-    exibeMatriz(matriz);
-    
-    down(matriz, linha, coluna);
-    cout << "Linha " << linha << " / Coluna " << coluna << endl;
-    exibeMatriz(matriz);
-    
-    right(matriz, linha, coluna);
-    cout << "Linha " << linha << " / Coluna " << coluna << endl;
-    exibeMatriz(matriz);*/
+        case KEY_DOWN:
+            // cout << "Movendo para baixo" << endl;
+            up(matrix, line, column);
+            break;
+
+        case KEY_RIGHT:
+            // cout << "Movendo para direita" << endl;
+            left(matrix, line, column);
+            break;
+
+        case KEY_LEFT:
+            // cout << "Movendo para esquerda" << endl;
+            right(matrix, line, column);
+            break;
+        
+        case KEY_ESCAPE:
+            cout << "Adios" << endl;
+            playing = false;
+            break;
+
+        default:
+            break;
+        }
+        system("cls");
+
+        // TODO: Conferir se está ordenado
+    }
 
     return 0;
 }

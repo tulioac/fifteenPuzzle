@@ -2,7 +2,6 @@
 
 void up(int matrix[tam][tam], int &line, int &column) {
     // [i][j] => [i-1][j]
-    cout << "up()" << endl;
     int aux = matrix[line][column];
     matrix[line][column] = matrix[line - 1][column];
     matrix[line - 1][column] = aux;
@@ -11,7 +10,6 @@ void up(int matrix[tam][tam], int &line, int &column) {
 
 void down(int matrix[tam][tam], int &line, int &column) {
     // [i][j] => [i+1][j]
-    cout << "down()" << endl;
     int aux = matrix[line][column];
     matrix[line][column] = matrix[line + 1][column];
     matrix[line + 1][column] = aux;
@@ -20,7 +18,6 @@ void down(int matrix[tam][tam], int &line, int &column) {
 
 void left(int matrix[tam][tam], int &line, int &column) {
     // [i][j] => [i][j-1]
-    cout << "left()" << endl;
     int aux = matrix[line][column];
     matrix[line][column] = matrix[line][column - 1];
     matrix[line][column - 1] = aux;
@@ -30,7 +27,6 @@ void left(int matrix[tam][tam], int &line, int &column) {
 
 void right(int matrix[tam][tam], int &line, int &column) {
     // [i][j] => [i][j+1]
-    cout << "right()" << endl;
     int aux = matrix[line][column];
     matrix[line][column] = matrix[line][column + 1];
     matrix[line][column + 1] = aux;
@@ -40,7 +36,11 @@ void right(int matrix[tam][tam], int &line, int &column) {
 void displayMatrix(int matrix[tam][tam]) {
     for (int i = 0; i < tam; i++) {
         for (int j = 0; j < tam; j++) {
-            printf("%.2d ", matrix[i][j]);
+            if (matrix[i][j] == 0) {
+                printf("   ");
+            } else {
+                printf("%.2d ", matrix[i][j]);
+            }
         }
         cout << endl;
     }
