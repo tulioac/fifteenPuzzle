@@ -48,3 +48,28 @@ void exibeMatriz(int matriz[tam][tam]) {
 
     cout << endl << endl;
 }
+
+void preencheMatriz(int matriz[tam][tam]) {
+    int size = tam*tam - 1;
+    int array[size];
+
+    srand(time(NULL));
+
+    cout << "Original" << endl;
+    for (int i = 0; i < size; i++) {
+        array[i] = i + 1;
+        cout << array[i] << " ";
+    }
+
+    for (int i = size - 1; i > 0; i--) {
+        int j = rand() % i;
+        array[i] ^= array[j];
+        array[j] ^= array[i];
+        array[i] ^= array[j];
+    }
+
+    cout << endl << endl;
+    for (int i = 0; i < size; i++) {
+        cout << array[i] << " ";
+    }
+}

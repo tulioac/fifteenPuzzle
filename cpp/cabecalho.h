@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 // Tamanho da matriz[tam][tam]
 #define tam 4
@@ -17,6 +19,9 @@ void right(int [tam][tam], int &, int &);
 
 // Função de exibição da matriz
 void exibeMatriz(int [tam][tam]);
+
+//
+void preencheMatriz(int [tam][tam]);
 
 
 #endif
