@@ -6,9 +6,19 @@ using namespace std;
 
 int main() {
 
-    int matrix[tam][tam] = {0};
+    // Creates and fill an array from 1 to size and shuffle it
+    int array[size];
+    fillSortedArray(array);
+    shuffleArray(array);
 
-    fillMatrix(matrix);
+    // Creates the matrix, fill with the array and shuffles the array values
+    int matrix[tam][tam] = {0};
+    fillMatrix(matrix, array);
+
+    // Sorted the array to after compare to the matrix
+    fillSortedArray(array);
+
+    // Initialize the position of the gap
     int line = tam - 1;
     int column = tam - 1;
 
@@ -55,6 +65,12 @@ int main() {
         }
 
         system("cls");
+
+        if (checkMatrix(matrix, array)) {
+            playing = false;
+            cout << "Voce ganhou! Parabens!" << endl <<
+            "Foram necessarias apenas " << actionCounter << " jogadas para finalizar o jogo!" << endl << endl;
+        }
 
         // TODO: Conferir se está ordenado
     }

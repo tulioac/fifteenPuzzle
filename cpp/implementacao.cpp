@@ -63,16 +63,13 @@ void displayMatrix(int matrix[tam][tam]) {
     cout << endl << endl;
 }
 
-void fillMatrix(int matrix[tam][tam]) {
-    int size = tam*tam - 1;
-    int array[size];
-
-    srand(time(NULL));
-
+void fillSortedArray(int array[size]) {
     // Fill the array from 1 to size
     for (int i = 0; i < size; i++)
         array[i] = i + 1;
+}
 
+void shuffleArray(int array[size]) {
     // Shuffle the array
     for (int i = size - 1; i > 0; i--) {
         int j = rand() % i;
@@ -80,10 +77,23 @@ void fillMatrix(int matrix[tam][tam]) {
         array[j] ^= array[i];
         array[i] ^= array[j];
     }
+}
 
-    // Assign the arrays values to the matrix
+void fillMatrix(int matrix[tam][tam], int array[size]) {
+    srand(time(NULL));
+
+    // Assign the shuffled array values to the matrix
     for (int i = 0; i < size; i++)
-        matrix[i / tam][ i % tam] = array[i];
+        matrix[i / tam][i % tam] = array[i];
+}
+
+bool checkMatrix(int matrix[tam][tam], int array[size]) {
+    // Check if the matrix value is equal to the sorted array
+    for (int i = 0; i < size; i++)
+        if (matrix[i / tam][i % tam] != array[i])
+            return false;
+    
+    return true;
 }
 
 void showCounter(int counter){

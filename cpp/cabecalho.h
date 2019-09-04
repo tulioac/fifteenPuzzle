@@ -8,7 +8,8 @@
 #include <conio.h>
 
 // Size of matrix[tam][tam]
-#define tam 4
+#define tam 2
+#define size (tam*tam - 1)
 
 // Numbers that represent the keyboard keys input 
 #define KEY_UP 72
@@ -29,8 +30,17 @@ bool right(int [tam][tam], int &, int &);
 // Display the matrix function
 void displayMatrix(int [tam][tam]);
 
+// Fill an array from 1 to the size
+void fillSortedArray(int []);
+
+// Shuffle an array
+void shuffleArray(int []);
+
 // Filling the matrix function
-void fillMatrix(int [tam][tam]);
+void fillMatrix(int [tam][tam], int[size]);
+
+// Check if the matrix is sorted
+bool checkMatrix(int [tam][tam], int[size]);
 
 //Display Action Counter
 void showCounter(int counter);
