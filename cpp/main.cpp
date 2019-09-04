@@ -5,7 +5,8 @@
 using namespace std;
 
 int main() {
-    int matrix[tam][tam] = {100};
+
+    int matrix[tam][tam] = {0};
 
     fillMatrix(matrix);
     int line = tam - 1;
@@ -19,8 +20,9 @@ int main() {
     cout << "Que comecem os jogos..." << endl << endl;
 
     while (playing) {
-        displayMatrix(matrix);
+
         showCounter(actionCounter);
+        displayMatrix(matrix);
         key = 0;
 
         switch ((key = getch())) {
@@ -45,17 +47,19 @@ int main() {
             break;
         
         case KEY_ESCAPE:
-            cout << "Adios" << endl;
             playing = false;
             break;
 
         default:
             break;
         }
+
         system("cls");
 
         // TODO: Conferir se está ordenado
     }
+
+    cout << "Adios" << endl;
 
     return 0;
 }

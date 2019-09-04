@@ -70,9 +70,8 @@ void fillMatrix(int matrix[tam][tam]) {
     srand(time(NULL));
 
     // Fill the array from 1 to size
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++)
         array[i] = i + 1;
-    }
 
     // Shuffle the array
     for (int i = size - 1; i > 0; i--) {
@@ -83,11 +82,10 @@ void fillMatrix(int matrix[tam][tam]) {
     }
 
     // Assign the arrays values to the matrix
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++)
         matrix[i / tam][ i % tam] = array[i];
-    }
 }
 
 void showCounter(int counter){
-    cout<<"Numero de jogadas: "<<counter<<endl;
+    cout << "Numero de jogadas: " << counter << endl;
 }
