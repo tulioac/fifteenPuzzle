@@ -35,7 +35,11 @@ int main() {
 
     cout << "Que comecem os jogos..." << endl << endl;
 
+    Sleep(2000);
+
     while (playing) {
+
+        system("cls");
 
         showCounter(actionCounter);
         displayMatrix(matrix, tam);
@@ -64,24 +68,21 @@ int main() {
         
         case KEY_ESCAPE:
             playing = false;
+            cout << "Adios" << endl << endl;
+            Sleep(2000);
             break;
 
         default:
             break;
         }
 
-        system("cls");
 
         if (checkMatrix(matrix, array, tam, size)) {
             playing = false;
             cout << "Voce ganhou! Parabens!" << endl <<
             "Foram necessarias apenas " << actionCounter << " jogadas para finalizar o jogo!" << endl << endl;
         }
-
-        // TODO: Conferir se está ordenado
     }
-
-    cout << "Adios" << endl;
 
     return 0;
 }

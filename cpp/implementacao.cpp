@@ -1,19 +1,21 @@
 #include "cabecalho.h"
 
-int menu(){
-    cout << "Bem vindo ao fifteen puzzle" << endl;
-    cout << endl << "Escolha uma dificuldade" << endl;
-    cout << "1 - Easy" << endl; 
-    cout << "2 - Medium" << endl;
-    cout << "3 - Hard" << endl;
-    cout << "4 - Very Hard" << endl;
-    cout << "5 - Ultimate" << endl;
+int menu() {
+    cout << "Bem vindo ao Fifteen Puzzle" << endl << endl;
+
+    cout << "Escolha uma dificuldade:"  << endl
+         << "1 - Easy"                  << endl 
+         << "2 - Medium"                << endl
+         << "3 - Hard"                  << endl
+         << "4 - Very Hard"             << endl
+         << "5 - Ultimate"              << endl;
+    
     int dificuldade;
 
     cin >> dificuldade;
 
     return dificuldade;
-    }
+}
 
 
 bool up(int matrix[6][6], int &line, int &column, int tam) {

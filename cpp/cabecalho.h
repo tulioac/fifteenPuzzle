@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <conio.h>
+#include <windows.h>
 
 
 // Numbers that represent the keyboard keys input 
