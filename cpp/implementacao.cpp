@@ -1,6 +1,22 @@
 #include "cabecalho.h"
 
-bool up(int matrix[tam][tam], int &line, int &column) {
+int menu(){
+    cout << "Bem vindo ao fifteen puzzle" << endl;
+    cout << endl << "Escolha uma dificuldade" << endl;
+    cout << "1 - Easy" << endl; 
+    cout << "2 - Medium" << endl;
+    cout << "3 - Hard" << endl;
+    cout << "4 - Very Hard" << endl;
+    cout << "5 - Ultimate" << endl;
+    int dificuldade;
+
+    cin >> dificuldade;
+
+    return dificuldade;
+    }
+
+
+bool up(int matrix[6][6], int &line, int &column, int tam) {
     // [i][j] => [i-1][j]
     if (line - 1 >= 0) {
         int aux = matrix[line][column];
@@ -12,7 +28,7 @@ bool up(int matrix[tam][tam], int &line, int &column) {
     return false;
 }
 
-bool down(int matrix[tam][tam], int &line, int &column) {
+bool down(int matrix[6][6], int &line, int &column, int tam) {
     // [i][j] => [i+1][j]
     if (line + 1 <= tam - 1) {
         int aux = matrix[line][column];
@@ -24,7 +40,7 @@ bool down(int matrix[tam][tam], int &line, int &column) {
     return false;
 }
 
-bool left(int matrix[tam][tam], int &line, int &column) {
+bool left(int matrix[6][6], int &line, int &column, int tam) {
     // [i][j] => [i][j-1]
     if (column - 1 >= 0) {
         int aux = matrix[line][column];
@@ -36,7 +52,7 @@ bool left(int matrix[tam][tam], int &line, int &column) {
     return false;  
 }
 
-bool right(int matrix[tam][tam], int &line, int &column) {
+bool right(int matrix[6][6], int &line, int &column, int tam) {
     // [i][j] => [i][j+1]
     if (column + 1 <= tam - 1) {
         int aux = matrix[line][column];
@@ -48,7 +64,7 @@ bool right(int matrix[tam][tam], int &line, int &column) {
     return false;
 }
 
-void displayMatrix(int matrix[tam][tam]) {
+void displayMatrix(int matrix[6][6], int tam) {
     for (int i = 0; i < tam; i++) {
         for (int j = 0; j < tam; j++) {
             if (matrix[i][j] == 0) {
@@ -63,13 +79,13 @@ void displayMatrix(int matrix[tam][tam]) {
     cout << endl << endl;
 }
 
-void fillSortedArray(int array[size]) {
+void fillSortedArray(int array[], int size) {
     // Fill the array from 1 to size
     for (int i = 0; i < size; i++)
         array[i] = i + 1;
 }
 
-void shuffleArray(int array[size]) {
+void shuffleArray(int array[], int size) {
     // Shuffle the array
     for (int i = size - 1; i > 0; i--) {
         int j = rand() % i;
@@ -79,7 +95,7 @@ void shuffleArray(int array[size]) {
     }
 }
 
-void fillMatrix(int matrix[tam][tam], int array[size]) {
+void fillMatrix(int matrix[6][6], int array[], int tam, int size) {
     srand(time(NULL));
 
     // Assign the shuffled array values to the matrix
@@ -87,7 +103,7 @@ void fillMatrix(int matrix[tam][tam], int array[size]) {
         matrix[i / tam][i % tam] = array[i];
 }
 
-bool checkMatrix(int matrix[tam][tam], int array[size]) {
+bool checkMatrix(int matrix[6][6], int array[], int tam, int size) {
     // Check if the matrix value is equal to the sorted array
     for (int i = 0; i < size; i++)
         if (matrix[i / tam][i % tam] != array[i])

@@ -7,9 +7,6 @@
 #include <time.h>
 #include <conio.h>
 
-// Size of matrix[tam][tam]
-#define tam 2
-#define size (tam*tam - 1)
 
 // Numbers that represent the keyboard keys input 
 #define KEY_UP 72
@@ -21,26 +18,29 @@
 
 using namespace std;
 
+//Menu
+int menu();
+
 // Move functions
-bool up(int [tam][tam], int &, int &);
-bool down(int [tam][tam], int &, int &);
-bool left(int [tam][tam], int &, int &);
-bool right(int [tam][tam], int &, int &);
+bool up(int [6][6], int &, int &, int);
+bool down(int [6][6], int &, int &, int);
+bool left(int [6][6], int &, int &, int);
+bool right(int [6][6], int &, int &, int);
 
 // Display the matrix function
-void displayMatrix(int [tam][tam]);
+void displayMatrix(int [6][6], int);
 
-// Fill an array from 1 to the size
-void fillSortedArray(int []);
+// Fill an array from 1 to the 
+void fillSortedArray(int [], int);
 
 // Shuffle an array
-void shuffleArray(int []);
+void shuffleArray(int [], int);
 
 // Filling the matrix function
-void fillMatrix(int [tam][tam], int[size]);
+void fillMatrix(int [6][6], int[], int, int);
 
 // Check if the matrix is sorted
-bool checkMatrix(int [tam][tam], int[size]);
+bool checkMatrix(int [6][6], int[], int, int);
 
 //Display Action Counter
 void showCounter(int counter);
