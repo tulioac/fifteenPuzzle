@@ -39,7 +39,6 @@ int main() {
 
     while (playing) {
 
-        system("cls");
 
         showCounter(actionCounter);
         displayMatrix(matrix, tam);
@@ -76,6 +75,7 @@ int main() {
             break;
         }
 
+        system("cls");
 
         if (checkMatrix(matrix, array, tam, size)) {
             playing = false;

@@ -1,19 +1,25 @@
 #include "cabecalho.h"
 
 int menu() {
-    cout << "Bem vindo ao Fifteen Puzzle" << endl << endl;
 
-    cout << "Escolha uma dificuldade:"  << endl
-         << "1 - Easy"                  << endl 
-         << "2 - Medium"                << endl
-         << "3 - Hard"                  << endl
-         << "4 - Very Hard"             << endl
-         << "5 - Ultimate"              << endl;
+    int dificuldade = -1;
+
+    do {
+        system("cls");
+
+        cout << "Bem vindo ao Fifteen Puzzle" << endl << endl;
+        
+        cout << "Escolha uma dificuldade valida:"   << endl
+             << "1 - Easy"                          << endl 
+             << "2 - Medium"                        << endl
+             << "3 - Hard"                          << endl
+             << "4 - Very Hard"                     << endl
+             << "5 - Ultimate"                      << endl;
+
+        cin >> dificuldade;
     
-    int dificuldade;
-
-    cin >> dificuldade;
-
+    } while (dificuldade < 1 || dificuldade > 5);
+    
     return dificuldade;
 }
 
