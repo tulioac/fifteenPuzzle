@@ -8,11 +8,11 @@ int main() {
 
     int dificuldade = menu();
     
-    // Size of matrix[tam][tam]
+    // Size of the matrix[tam][tam]
     int tam = dificuldade+1;
     int size = tam*tam -1;
     
-    // Creates and fill an array from 1 to size and shuffle it
+    // Creates and fill an array from 1 to size and shuffles it
     int array[size];
     fillSortedArray(array, size);
     shuffleArray(array, size);
@@ -21,7 +21,7 @@ int main() {
     int matrix[6][6] = {0};
     fillMatrix(matrix, array, tam, size);
 
-    // Sorted the array to after compare to the matrix
+    // Sorted the array to later compare with the matrix
     fillSortedArray(array, size);
 
     // Initialize the position of the gap
