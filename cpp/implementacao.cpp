@@ -1,7 +1,8 @@
 #include "cabecalho.h"
 
-int menu() {
 
+int menu() {
+    /* define os niveis do jogo */
     int dificuldade = -1;
 
     do {
