@@ -6,17 +6,23 @@ using namespace std;
 
 int main() {
 
-    // Creates and fill an array from 1 to size and shuffle it
+    int dificuldade = menu();
+    
+    // Size of the matrix[tam][tam]
+    int tam = dificuldade+1;
+    int size = tam*tam -1;
+    
+    // Creates and fill an array from 1 to size and shuffles it
     int array[size];
-    fillSortedArray(array);
-    shuffleArray(array);
+    fillSortedArray(array, size);
+    shuffleArray(array, size);
 
     // Creates the matrix, fill with the array and shuffles the array values
-    int matrix[tam][tam] = {0};
-    fillMatrix(matrix, array);
+    int matrix[6][6] = {0};
+    fillMatrix(matrix, array, tam, size);
 
-    // Sorted the array to after compare to the matrix
-    fillSortedArray(array);
+    // Sorted the array to later compare with the matrix
+    fillSortedArray(array, size);
 
     // Initialize the position of the gap
     int line = tam - 1;
@@ -29,35 +35,40 @@ int main() {
 
     cout << "Que comecem os jogos..." << endl << endl;
 
+    Sleep(2000);
+
     while (playing) {
 
+
         showCounter(actionCounter);
-        displayMatrix(matrix);
+        displayMatrix(matrix, tam);
         key = 0;
 
         switch ((key = getch())) {
         case KEY_UP:
-            if (down(matrix, line, column)) 
+            if (down(matrix, line, column, tam)) 
                 actionCounter++;
             break;
 
         case KEY_DOWN:
-            if (up(matrix, line, column)) 
+            if (up(matrix, line, column, tam)) 
                 actionCounter++;
             break;
 
         case KEY_RIGHT:
-            if (left(matrix, line, column)) 
+            if (left(matrix, line, column, tam)) 
                 actionCounter++;
             break;
 
         case KEY_LEFT:
-            if (right(matrix, line, column)) 
+            if (right(matrix, line, column, tam)) 
                 actionCounter++;
             break;
         
         case KEY_ESCAPE:
             playing = false;
+            cout << "Adios" << endl << endl;
+            Sleep(2000);
             break;
 
         default:
@@ -66,16 +77,12 @@ int main() {
 
         system("cls");
 
-        if (checkMatrix(matrix, array)) {
+        if (checkMatrix(matrix, array, tam, size)) {
             playing = false;
             cout << "Voce ganhou! Parabens!" << endl <<
             "Foram necessarias apenas " << actionCounter << " jogadas para finalizar o jogo!" << endl << endl;
         }
-
-        // TODO: Conferir se está ordenado
     }
-
-    cout << "Adios" << endl;
 
     return 0;
 }
