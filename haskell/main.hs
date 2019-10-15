@@ -21,7 +21,7 @@ main = do
     - Exibe a matriz
     
     - Aguarda a tecla de ação
-    - Executa a ação de acordo com a tecla
+    - Mover de acordo com a tecla
     - 0 para sair
 
     - Limpa tela (se possível)

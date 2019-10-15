@@ -41,5 +41,5 @@ raizQuadradaInteira :: Int -> Int
 raizQuadradaInteira n = aux n
     where
         aux x
-            | x*x > n = aux (x - 1)
+            | x * x > n = aux (x - 1)
             | otherwise = x
