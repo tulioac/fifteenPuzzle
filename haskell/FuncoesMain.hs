@@ -2,10 +2,14 @@ module FuncoesMain (
     exibeDificuldades,
     solicitaDificuldade,
     criaArrayOrdenado,
-    embaralhaArray
+    embaralhaArray,
+    mostraNaTela,
+    clearScreen
 ) where
 
 import System.Random
+import System.Process as SP
+
 
 exibeDificuldades :: IO()
 exibeDificuldades =
@@ -24,7 +28,7 @@ solicitaDificuldade =
         return (read (dificuldade))
 
 criaArrayOrdenado :: Int -> [Int]
-criaArrayOrdenado tamanho = [1..(tamanho ^ 2 - 1)]
+criaArrayOrdenado tamanho = [1..(tamanho ^ 2 )]
 
 embaralhaArray array = 
     if 
@@ -36,6 +40,18 @@ embaralhaArray array =
             i <- System.Random.randomRIO (0, length (array) - 1)
             r <- embaralhaArray (take i array ++ drop (i + 1) array)
             return (array!!i : r)
+
+mostraNaTela:: [Int] -> Int -> Int -> String -> String
+mostraNaTela (x:xs) contador dificuldade saida
+    | (contador == (dificuldade^2)-1) = (saida++(show(x)++"]\n"))
+    | ((contador `mod` dificuldade) == 0) = mostraNaTela (xs) (contador+1) (dificuldade) (saida++("["++show(x)++","))
+    | ((contador `mod` dificuldade) == dificuldade-1) = mostraNaTela (xs) (contador+1) (dificuldade) (saida++(show(x)++"]\n")) 
+    | otherwise = mostraNaTela (xs) (contador+1) (dificuldade) (saida++ (show(x)++",")) 
+
+clearScreen :: IO ()
+clearScreen = do
+    SP.system "cls"
+    return ()
 
 raizQuadradaInteira :: Int -> Int
 raizQuadradaInteira n = aux n
