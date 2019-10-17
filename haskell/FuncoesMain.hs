@@ -23,12 +23,25 @@ exibeDificuldades =
 solicitaDificuldade :: IO Int
 solicitaDificuldade = 
     do
-        putStrLn ("Digite a dificuldade desejada")
+        putStrLn ("Digite de 1 a 5 para seleciona a dificuldade desejada")
         dificuldade <- getLine
-        return (read (dificuldade))
+        if(read (dificuldade) > 5) then solicitaDificuldade
+        else
+            do
+                return (read (dificuldade))
+
+solicitaMovimento :: IO String
+solicitaMovimento =
+    do
+        putStrLn("Digite w a s d, para se encaixar as peças no local vazio!")
+        movimento <- getLine
+        if(movimento /= "w" && movimento /="s" && movimento /= "a" && movimento /= "d") then solicitaMovimento
+        else
+            do
+                return movimento
 
 criaArrayOrdenado :: Int -> [Int]
-criaArrayOrdenado tamanho = [1..(tamanho ^ 2 )]
+criaArrayOrdenado tamanho = [1..(tamanho ^ 2)]
 
 embaralhaArray array = 
     if 
@@ -43,10 +56,15 @@ embaralhaArray array =
 
 mostraNaTela:: [Int] -> Int -> Int -> String -> String
 mostraNaTela (x:xs) contador dificuldade saida
-    | (contador == (dificuldade^2)-1) = (saida++(show(x)++"]\n"))
-    | ((contador `mod` dificuldade) == 0) = mostraNaTela (xs) (contador+1) (dificuldade) (saida++("["++show(x)++","))
-    | ((contador `mod` dificuldade) == dificuldade-1) = mostraNaTela (xs) (contador+1) (dificuldade) (saida++(show(x)++"]\n")) 
-    | otherwise = mostraNaTela (xs) (contador+1) (dificuldade) (saida++ (show(x)++",")) 
+    | (contador == (dificuldade^2)-1) = (saida++((exibe(x)(dificuldade))++"]\n"))
+    | ((contador `mod` dificuldade) == 0) = mostraNaTela (xs) (contador+1) (dificuldade) (saida++("["++(exibe(x)(dificuldade))++","))
+    | ((contador `mod` dificuldade) == dificuldade-1) = mostraNaTela (xs) (contador+1) (dificuldade) (saida++((exibe(x)(dificuldade))++"]\n")) 
+    | otherwise = mostraNaTela (xs) (contador+1) (dificuldade) (saida++ ((exibe(x)(dificuldade))++",")) 
+
+exibe:: Int -> Int -> String
+exibe numero dificuldade
+    | numero == dificuldade^2 = " "
+    | otherwise = show(numero)
 
 clearScreen :: IO ()
 clearScreen = do
