@@ -1,3 +1,10 @@
+module Implementacao (
+    moveEsquerda,
+    moveDireita,
+    moveBaixo,
+    moveCima
+) where
+
 subUm:: Int -> Int
 subUm x = x-1
 

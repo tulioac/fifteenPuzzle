@@ -1,6 +1,7 @@
 module FuncoesMain (
     exibeDificuldades,
     solicitaDificuldade,
+    solicitaMovimento,
     criaArrayOrdenado,
     embaralhaArray,
     mostraNaTela,
