@@ -10,7 +10,9 @@ main = do
     {- Cria e preenche array de 1 até o tamanho desejado -}
     {- Embaralha array -}
     arrayEmbaralhado <- embaralhaArray (criaArrayOrdenado (dificuldade + 1))
-    print (arrayEmbaralhado)
+    
+    {-Exibe array embaralhado, em forma de Matriz Embaralhada-}
+    putStrLn (mostraNaTela (arrayEmbaralhado) (0) (dificuldade + 1) (""))
 
 {- Cria matriz e preenche com os valores do array -}
 
