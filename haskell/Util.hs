@@ -31,7 +31,7 @@ data ArrowKey = U | D | L | R | O deriving Show
 -- If no arrow pressed:  IO Nothing
 getKey :: IO (Maybe ArrowKey)
 getKey = do
-	hSetEcho stdout False
+	hSetEcho stdout True
 	hSetBuffering stdin NoBuffering
 	c <- getChar
 	case c of
