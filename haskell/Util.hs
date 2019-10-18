@@ -23,7 +23,7 @@ import System.IO
 -- L,R rather than Left,
 -- Right to avoid conflict
 -- with Either monad
-data ArrowKey = U | D | L | R deriving Show
+data ArrowKey = U | D | L | R | O deriving Show
 
 
 -- Parses an Arrow key from stdin
@@ -36,7 +36,7 @@ getKey = do
 	c <- getChar
 	case c of
 		'\ESC'  -> parseArrow
-		'\n'	-> return Nothing
+		'\n'	-> return $ Just O
 		_	-> getKey
 
 
@@ -52,5 +52,5 @@ parseArrow = do
 				'B' -> return $ Just D
 				'C' -> return $ Just R
 				'D' -> return $ Just L
-				_   -> return Nothing
+				_  -> return Nothing
 		_   -> return Nothing

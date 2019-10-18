@@ -55,7 +55,7 @@ novoSolicitaMovimento =
                 D -> return "s"
                 L -> return "a"
                 R -> return "d"
-            Nothing -> novoSolicitaMovimento
+                O -> return ""
 
 
 executaOperacoes:: [Int] -> Int -> IO ()
@@ -63,9 +63,12 @@ executaOperacoes lista dificuldade = do
     if(isSorted (lista)) then putStrLn("Ganhoooooooou")
     else do
         mov <- novoSolicitaMovimento
-        clearScreen
-        putStrLn (mostraNaTela (executaMovimentos lista mov dificuldade) 0 dificuldade "" )
-        executaOperacoes (executaMovimentos lista mov dificuldade) (dificuldade)
+        if(mov == "") then putStrLn ("Perdeeeeeeeu")
+        else
+            do
+                clearScreen
+                putStrLn (mostraNaTela (executaMovimentos lista mov dificuldade) 0 dificuldade "" )
+                executaOperacoes (executaMovimentos lista mov dificuldade) (dificuldade)
 
 criaArrayOrdenado :: Int -> [Int]
 criaArrayOrdenado tamanho = [1..(tamanho ^ 2)]
@@ -97,7 +100,7 @@ exibe numero dificuldade
 
 clearScreen :: IO ()
 clearScreen = do
-    SP.system "cls"
+    SP.system "clear"
     return ()
 
 raizQuadradaInteira :: Int -> Int
