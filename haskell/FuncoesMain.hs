@@ -5,11 +5,13 @@ module FuncoesMain (
     criaArrayOrdenado,
     embaralhaArray,
     mostraNaTela,
-    clearScreen
+    clearScreen,
+    executaOperacoes
 ) where
 
 import System.Random
 import System.Process as SP
+import Jogo
 
 
 exibeDificuldades :: IO()
@@ -41,6 +43,15 @@ solicitaMovimento =
             do
                 return movimento
 
+executaOperacoes:: [Int] -> Int -> IO ()
+executaOperacoes lista dificuldade = do
+    if(isSorted (lista)) then putStrLn("Ganhoooooooou")
+    else do
+        mov <- solicitaMovimento
+        clearScreen
+        putStrLn (mostraNaTela (executaMovimentos lista mov dificuldade) 0 dificuldade "" )
+        executaOperacoes (executaMovimentos lista mov dificuldade) (dificuldade)
+
 criaArrayOrdenado :: Int -> [Int]
 criaArrayOrdenado tamanho = [1..(tamanho ^ 2)]
 
@@ -55,12 +66,14 @@ embaralhaArray array =
             r <- embaralhaArray (take i array ++ drop (i + 1) array)
             return (array!!i : r)
 
+
 mostraNaTela:: [Int] -> Int -> Int -> String -> String
 mostraNaTela (x:xs) contador dificuldade saida
     | (contador == (dificuldade^2)-1) = (saida++((exibe(x)(dificuldade))++"]\n"))
     | ((contador `mod` dificuldade) == 0) = mostraNaTela (xs) (contador+1) (dificuldade) (saida++("["++(exibe(x)(dificuldade))++","))
     | ((contador `mod` dificuldade) == dificuldade-1) = mostraNaTela (xs) (contador+1) (dificuldade) (saida++((exibe(x)(dificuldade))++"]\n")) 
     | otherwise = mostraNaTela (xs) (contador+1) (dificuldade) (saida++ ((exibe(x)(dificuldade))++",")) 
+
 
 exibe:: Int -> Int -> String
 exibe numero dificuldade
@@ -78,3 +91,4 @@ raizQuadradaInteira n = aux n
         aux x
             | x * x > n = aux (x - 1)
             | otherwise = x
+

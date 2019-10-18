@@ -21,28 +21,26 @@ substituiValorPosicao (x:xs) index valor = [x] ++ substituiValorPosicao (xs) (su
 swapPosicoes:: [Int] -> Int -> Int -> [Int]
 swapPosicoes lista index1 index2 = substituiValorPosicao (substituiValorPosicao lista (index1) (lista!!index2)) (index2) (lista!!index1)
 
-dificuldade = 3
-
-moveEsquerda:: [Int] -> [Int]
-moveEsquerda lista
+moveEsquerda:: [Int] -> Int -> [Int]
+moveEsquerda lista dificuldade
     |(x `mod` dificuldade) /= 0 = swapPosicoes (lista) (x) (x-1)
     |otherwise = lista
     where x = getEspVazio (lista) (length (lista)) (0)
 
-moveDireita:: [Int] -> [Int]
-moveDireita lista
+moveDireita:: [Int] -> Int -> [Int]
+moveDireita lista dificuldade
     |(x `mod` dificuldade) /= dificuldade-1 = swapPosicoes (lista) (x) (x+1)
     |otherwise = lista
     where x = getEspVazio (lista) (length (lista)) (0)
 
-moveCima:: [Int] -> [Int]
-moveCima lista
+moveCima:: [Int] -> Int -> [Int]
+moveCima lista dificuldade
     |x >= dificuldade  = swapPosicoes (lista) (x) (x-dificuldade)
     |otherwise = lista
     where x = getEspVazio (lista) (length (lista)) (0)
 
-moveBaixo:: [Int] -> [Int]
-moveBaixo lista
+moveBaixo:: [Int] -> Int -> [Int]
+moveBaixo lista dificuldade
     |x < (dificuldade*(dificuldade-1))  = swapPosicoes (lista) (x) (x+dificuldade)
     |otherwise = lista
     where x = getEspVazio (lista) (length (lista)) (0)
