@@ -1,5 +1,6 @@
 import FuncoesMain
 import Jogo
+import System.IO
 
 main :: IO()
 main = do 
@@ -22,6 +23,9 @@ main = do
     putStrLn $ mostraNaTela (arrayEmbaralhado) (0) (dificuldade + 1) ("") 
 
     executaOperacoes arrayEmbaralhado (dificuldade + 1) 1
+
+    hSetEcho stdout True
+    hSetBuffering stdin LineBuffering
 
     putStrLn $ "Deseja jogar novamente? (s/n)"
 
