@@ -5,7 +5,8 @@ module FuncoesMain (
     criaArrayOrdenado,
     embaralhaArray,
     mostraNaTela,
-    clearScreen
+    clearScreen,
+    executaOperacoes
 ) where
 
 import System.Random
@@ -48,8 +49,8 @@ executaOperacoes lista dificuldade = do
     else do
         mov <- solicitaMovimento
         clearScreen
-        putStrLn (mostraNaTela (executaMovimentos lista mov) 0 dificuldade "" )
-        executaOperacoes (executaMovimentos lista mov) (dificuldade)
+        putStrLn (mostraNaTela (executaMovimentos lista mov dificuldade) 0 dificuldade "" )
+        executaOperacoes (executaMovimentos lista mov dificuldade) (dificuldade)
 
 criaArrayOrdenado :: Int -> [Int]
 criaArrayOrdenado tamanho = [1..(tamanho ^ 2)]
@@ -65,12 +66,14 @@ embaralhaArray array =
             r <- embaralhaArray (take i array ++ drop (i + 1) array)
             return (array!!i : r)
 
+
 mostraNaTela:: [Int] -> Int -> Int -> String -> String
 mostraNaTela (x:xs) contador dificuldade saida
-    | (contador == (dificuldade^2)-1) = (saida++((exibe(x)(dificuldade))++"|\n"))
-    | ((contador `mod` dificuldade) == 0) = mostraNaTela (xs) (contador+1) (dificuldade) (saida++("|"++(exibe(x)(dificuldade))++","))
-    | ((contador `mod` dificuldade) == dificuldade-1) = mostraNaTela (xs) (contador+1) (dificuldade) (saida++((exibe(x)(dificuldade))++"|\n")) 
-    | otherwise = mostraNaTela (xs) (contador+1) (dificuldade) (saida++ ((exibe(x)(dificuldade))++"|")) 
+    | (contador == (dificuldade^2)-1) = (saida++((exibe(x)(dificuldade))++"]\n"))
+    | ((contador `mod` dificuldade) == 0) = mostraNaTela (xs) (contador+1) (dificuldade) (saida++("["++(exibe(x)(dificuldade))++","))
+    | ((contador `mod` dificuldade) == dificuldade-1) = mostraNaTela (xs) (contador+1) (dificuldade) (saida++((exibe(x)(dificuldade))++"]\n")) 
+    | otherwise = mostraNaTela (xs) (contador+1) (dificuldade) (saida++ ((exibe(x)(dificuldade))++",")) 
+
 
 exibe:: Int -> Int -> String
 exibe numero dificuldade
@@ -79,7 +82,7 @@ exibe numero dificuldade
 
 clearScreen :: IO ()
 clearScreen = do
-    SP.system "clear"
+    SP.system "cls"
     return ()
 
 raizQuadradaInteira :: Int -> Int

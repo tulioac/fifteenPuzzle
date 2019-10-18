@@ -6,15 +6,13 @@ module Jogo (
 
 import Implementacao
 
-executaMovimentos:: [Int] -> String -> [Int]
-executaMovimentos lista movimento
+executaMovimentos:: [Int] -> String -> Int -> [Int]
+executaMovimentos lista movimento dificuldade
     |isSorted (lista) = lista
-    |movimento == "w" = moveCima (lista)
-    |movimento == "a" = moveEsquerda (lista)
-    |movimento == "s" = moveBaixo (lista)
-    |otherwise = moveDireita (lista)
-
-  
+    |movimento == "w" = moveCima lista dificuldade
+    |movimento == "a" = moveEsquerda lista dificuldade
+    |movimento == "s" = moveBaixo lista dificuldade
+    |otherwise = moveDireita lista dificuldade
 
 isSorted:: [Int] -> Bool
 isSorted (x:xs)

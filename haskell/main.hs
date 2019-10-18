@@ -13,11 +13,9 @@ main = do
     arrayEmbaralhado <- embaralhaArray (criaArrayOrdenado (dificuldade + 1))
     
     {-Exibe array embaralhado, em forma de Matriz Embaralhada-}
-    putStrLn (mostraNaTela (arrayEmbaralhado) (0) (dificuldade + 1) (""))
+    putStrLn $ mostraNaTela (arrayEmbaralhado) (0) (dificuldade + 1) ("") 
 
-{- Cria matriz e preenche com os valores do array -}
-
-{- Inicializa as posições do espaço vazio -}
+    executaOperacoes arrayEmbaralhado (dificuldade + 1)
 
 {- Jogo:
     - Exibe o contador de ações
