@@ -1,19 +1,17 @@
-module FuncoesMain (
+module FuncoesIO (
     exibeDificuldades,
     solicitaDificuldade,
-    criaArrayOrdenado,
-    embaralhaArray,
     mostraNaTela,
     clearScreen,
-    executaOperacoes
+    executaOperacoes,
+    solicitaMovimento,
+    novoSolicitaMovimento
 ) where
 
-import System.Random
-import System.Process as SP
-import Jogo
 import Util
-
-
+import Arrays
+import Movimentos
+import System.Process as SP
 
 exibeDificuldades :: IO()
 exibeDificuldades =
@@ -34,7 +32,6 @@ solicitaDificuldade =
             do
                 return (read (dificuldade))
                 
-{-
 solicitaMovimento :: IO String
 solicitaMovimento =
     do
@@ -44,7 +41,6 @@ solicitaMovimento =
         else
             do
                 return movimento
--}
 
 novoSolicitaMovimento :: IO String
 novoSolicitaMovimento =
@@ -60,36 +56,26 @@ novoSolicitaMovimento =
                 O -> return ""
 
 
-executaOperacoes:: [Int] -> Int -> Int -> IO ()
+executaOperacoes :: [Int] -> Int -> Int -> IO ()
 executaOperacoes lista dificuldade operacoes = do
     if(isSorted (lista)) then putStrLn("Ganhoooooooou")
     else do
-        mov <- novoSolicitaMovimento
+        mov <- solicitaMovimento
         if(mov == "") then putStrLn ("Perdeeeeeeeu")
         else
             do
+                let novaLista = executaMovimentos lista mov dificuldade
                 clearScreen
-                putStrLn (mostraNaTela (executaMovimentos lista mov dificuldade) 0 dificuldade "" )
+                putStrLn (mostraNaTela novaLista 0 dificuldade "")
                 putStrLn ("Número de jogadas: " ++ show (operacoes))
-                executaOperacoes (executaMovimentos lista mov dificuldade) (dificuldade) (operacoes+1)
+
+                if (novaLista /= lista) then    -- Movimento válido
+                    executaOperacoes (executaMovimentos lista mov dificuldade) (dificuldade) (operacoes + 1)
+                else                            -- Movimento inválido
+                    executaOperacoes (executaMovimentos lista mov dificuldade) (dificuldade) (operacoes)
 
 
-criaArrayOrdenado :: Int -> [Int]
-criaArrayOrdenado tamanho = [1..(tamanho ^ 2)]
-
-embaralhaArray array = 
-    if 
-        length array < 2 
-    then 
-        return array 
-    else 
-        do
-            i <- System.Random.randomRIO (0, length (array) - 1)
-            r <- embaralhaArray (take i array ++ drop (i + 1) array)
-            return (array!!i : r)
-
-
-mostraNaTela:: [Int] -> Int -> Int -> String -> String
+mostraNaTela :: [Int] -> Int -> Int -> String -> String
 mostraNaTela (x:xs) contador dificuldade saida
     | (contador == (dificuldade^2)-1) = (saida++((exibe(x)(dificuldade))++"]\n"))
     | ((contador `mod` dificuldade) == 0) = mostraNaTela (xs) (contador+1) (dificuldade) (saida++("["++(exibe(x)(dificuldade))++","))
@@ -97,20 +83,12 @@ mostraNaTela (x:xs) contador dificuldade saida
     | otherwise = mostraNaTela (xs) (contador+1) (dificuldade) (saida++ ((exibe(x)(dificuldade))++",")) 
 
 
-exibe:: Int -> Int -> String
+exibe :: Int -> Int -> String
 exibe numero dificuldade
     | numero == dificuldade^2 = " "
     | otherwise = show(numero)
 
 clearScreen :: IO ()
 clearScreen = do
-    SP.system "clear"
+    SP.system "cls"
     return ()
-
-raizQuadradaInteira :: Int -> Int
-raizQuadradaInteira n = aux n
-    where
-        aux x
-            | x * x > n = aux (x - 1)
-            | otherwise = x
-

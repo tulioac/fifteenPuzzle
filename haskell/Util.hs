@@ -1,8 +1,7 @@
-
 module Util(
 	ArrowKey(..),
 	getKey,
-	) where
+) where
 
 
 import System.IO
