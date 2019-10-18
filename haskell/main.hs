@@ -1,4 +1,5 @@
 import FuncoesMain
+import Jogo
 
 main :: IO()
 main = do 

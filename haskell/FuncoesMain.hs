@@ -78,3 +78,4 @@ raizQuadradaInteira n = aux n
         aux x
             | x * x > n = aux (x - 1)
             | otherwise = x
+
