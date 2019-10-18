@@ -11,21 +11,21 @@ main = do
     {- Cria e preenche array de 1 até o tamanho desejado -}
     {- Embaralha array -}
     arrayEmbaralhado <- embaralhaArray (criaArrayOrdenado (dificuldade + 1))
+
+    clearScreen
     
     {-Exibe array embaralhado, em forma de Matriz Embaralhada-}
     putStrLn $ mostraNaTela (arrayEmbaralhado) (0) (dificuldade + 1) ("") 
 
-    executaOperacoes arrayEmbaralhado (dificuldade + 1)
+    executaOperacoes arrayEmbaralhado (dificuldade + 1) 1
 
-{- Jogo:
-    - Exibe o contador de ações
-    - Exibe a matriz
-    
-    - Aguarda a tecla de ação
-    - Mover de acordo com a tecla
-    - 0 para sair
+    putStrLn $ "Deseja jogar novamente? (s/n)"
 
-    - Limpa tela (se possível)
--}
+    resposta <- getLine
 
-{- Verifica a matriz com um array ordenado -}
+    if (resposta == "s") then
+        do
+            clearScreen
+            main
+    else 
+        return ()
