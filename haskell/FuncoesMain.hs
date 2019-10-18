@@ -33,6 +33,7 @@ solicitaDificuldade =
         else
             do
                 return (read (dificuldade))
+                
 {-
 solicitaMovimento :: IO String
 solicitaMovimento =
@@ -42,7 +43,8 @@ solicitaMovimento =
         if(movimento /= "w" && movimento /="s" && movimento /= "a" && movimento /= "d") then solicitaMovimento
         else
             do
-                return movimento-}
+                return movimento
+-}
 
 novoSolicitaMovimento :: IO String
 novoSolicitaMovimento =
@@ -58,8 +60,8 @@ novoSolicitaMovimento =
                 O -> return ""
 
 
-executaOperacoes:: [Int] -> Int -> IO ()
-executaOperacoes lista dificuldade = do
+executaOperacoes:: [Int] -> Int -> Int -> IO ()
+executaOperacoes lista dificuldade operacoes = do
     if(isSorted (lista)) then putStrLn("Ganhoooooooou")
     else do
         mov <- novoSolicitaMovimento
@@ -69,6 +71,7 @@ executaOperacoes lista dificuldade = do
                 clearScreen
                 putStrLn (mostraNaTela (executaMovimentos lista mov dificuldade) 0 dificuldade "" )
                 executaOperacoes (executaMovimentos lista mov dificuldade) (dificuldade)
+
 
 criaArrayOrdenado :: Int -> [Int]
 criaArrayOrdenado tamanho = [1..(tamanho ^ 2)]
