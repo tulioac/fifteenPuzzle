@@ -1,7 +1,6 @@
 module FuncoesMain (
     exibeDificuldades,
     solicitaDificuldade,
-    solicitaMovimento,
     criaArrayOrdenado,
     embaralhaArray,
     mostraNaTela,
@@ -12,6 +11,8 @@ module FuncoesMain (
 import System.Random
 import System.Process as SP
 import Jogo
+import Util
+
 
 
 exibeDificuldades :: IO()
@@ -32,7 +33,8 @@ solicitaDificuldade =
         else
             do
                 return (read (dificuldade))
-
+                
+{-
 solicitaMovimento :: IO String
 solicitaMovimento =
     do
@@ -42,16 +44,34 @@ solicitaMovimento =
         else
             do
                 return movimento
+-}
+
+novoSolicitaMovimento :: IO String
+novoSolicitaMovimento =
+    do
+        putStrLn("Use as setas, para encaixar as peças no local vazio!")
+        u <- getKey
+        case u of
+            Just a -> case a of
+                U -> return "w"
+                D -> return "s"
+                L -> return "a"
+                R -> return "d"
+                O -> return ""
+
 
 executaOperacoes:: [Int] -> Int -> Int -> IO ()
 executaOperacoes lista dificuldade operacoes = do
     if(isSorted (lista)) then putStrLn("Ganhoooooooou")
     else do
-        mov <- solicitaMovimento
-        clearScreen
-        putStrLn (mostraNaTela (executaMovimentos lista mov dificuldade) 0 dificuldade "" )
-        putStrLn $ "Contador de acoes: " ++ show (operacoes)
-        executaOperacoes (executaMovimentos lista mov dificuldade) (dificuldade) (operacoes + 1)
+        mov <- novoSolicitaMovimento
+        if(mov == "") then putStrLn ("Perdeeeeeeeu")
+        else
+            do
+                clearScreen
+                putStrLn (mostraNaTela (executaMovimentos lista mov dificuldade) 0 dificuldade "" )
+                executaOperacoes (executaMovimentos lista mov dificuldade) (dificuldade)
+
 
 criaArrayOrdenado :: Int -> [Int]
 criaArrayOrdenado tamanho = [1..(tamanho ^ 2)]
@@ -83,7 +103,7 @@ exibe numero dificuldade
 
 clearScreen :: IO ()
 clearScreen = do
-    SP.system "cls"
+    SP.system "clear"
     return ()
 
 raizQuadradaInteira :: Int -> Int
