@@ -1,5 +1,6 @@
 import FuncoesMain
 import Jogo
+import System.IO
 
 main :: IO()
 main = do 
@@ -23,6 +24,7 @@ main = do
 
     executaOperacoes arrayEmbaralhado (dificuldade + 1) 1
 
+    hSetEcho stdout True
     putStrLn $ "Deseja jogar novamente? (s/n)"
 
     resposta <- getLine

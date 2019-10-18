@@ -53,10 +53,10 @@ novoSolicitaMovimento =
         u <- getKey
         case u of
             Just a -> case a of
-                U -> return "w"
-                D -> return "s"
-                L -> return "a"
-                R -> return "d"
+                U -> return "s"
+                D -> return "w"
+                L -> return "d"
+                R -> return "a"
                 O -> return ""
 
 
@@ -70,7 +70,8 @@ executaOperacoes lista dificuldade operacoes = do
             do
                 clearScreen
                 putStrLn (mostraNaTela (executaMovimentos lista mov dificuldade) 0 dificuldade "" )
-                executaOperacoes (executaMovimentos lista mov dificuldade) (dificuldade)
+                putStrLn ("Número de jogadas: " ++ show (operacoes))
+                executaOperacoes (executaMovimentos lista mov dificuldade) (dificuldade) (operacoes+1)
 
 
 criaArrayOrdenado :: Int -> [Int]
