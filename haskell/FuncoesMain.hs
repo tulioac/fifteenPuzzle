@@ -46,7 +46,7 @@ executaOperacoes:: [Int] -> Int -> IO ()
 executaOperacoes lista dificuldade = do
     if(isSorted (lista)) then putStrLn("Ganhoooooooou")
     else do
-        mov <- getLine
+        mov <- solicitaMovimento
         clearScreen
         putStrLn (mostraNaTela (executaMovimentos lista mov) 0 dificuldade "" )
         executaOperacoes (executaMovimentos lista mov) (dificuldade)
