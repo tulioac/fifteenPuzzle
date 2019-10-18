@@ -21,7 +21,7 @@ substituiValorPosicao (x:xs) index valor = [x] ++ substituiValorPosicao (xs) (su
 swapPosicoes:: [Int] -> Int -> Int -> [Int]
 swapPosicoes lista index1 index2 = substituiValorPosicao (substituiValorPosicao lista (index1) (lista!!index2)) (index2) (lista!!index1)
 
-dificuldade = 3
+dificuldade = 2
 
 moveEsquerda:: [Int] -> [Int]
 moveEsquerda lista

@@ -1,17 +1,20 @@
 module Jogo (
-    executaMovimentos
+    executaMovimentos,
+    isSorted,
+    getHead
 ) where
 
-import FuncoesMain
 import Implementacao
 
 executaMovimentos:: [Int] -> String -> [Int]
 executaMovimentos lista movimento
-    |isSorted (lista) = []
+    |isSorted (lista) = lista
     |movimento == "w" = moveCima (lista)
     |movimento == "a" = moveEsquerda (lista)
     |movimento == "s" = moveBaixo (lista)
     |otherwise = moveDireita (lista)
+
+  
 
 isSorted:: [Int] -> Bool
 isSorted (x:xs)

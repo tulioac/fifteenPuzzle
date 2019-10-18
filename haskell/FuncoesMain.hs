@@ -10,6 +10,7 @@ module FuncoesMain (
 
 import System.Random
 import System.Process as SP
+import Jogo
 
 
 exibeDificuldades :: IO()
@@ -40,6 +41,14 @@ solicitaMovimento =
         else
             do
                 return movimento
+
+mainHere:: [Int] -> IO ()
+mainHere lista = do
+    mov <- getLine
+    if(isSorted (lista)) then return ()
+    else do
+        putStrLn (mostraNaTela (executaMovimentos lista mov) 0 2 "" )
+        mainHere (executaMovimentos lista mov)
 
 criaArrayOrdenado :: Int -> [Int]
 criaArrayOrdenado tamanho = [1..(tamanho ^ 2)]
