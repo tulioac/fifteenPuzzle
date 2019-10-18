@@ -43,14 +43,15 @@ solicitaMovimento =
             do
                 return movimento
 
-executaOperacoes:: [Int] -> Int -> IO ()
-executaOperacoes lista dificuldade = do
+executaOperacoes:: [Int] -> Int -> Int -> IO ()
+executaOperacoes lista dificuldade operacoes = do
     if(isSorted (lista)) then putStrLn("Ganhoooooooou")
     else do
         mov <- solicitaMovimento
         clearScreen
         putStrLn (mostraNaTela (executaMovimentos lista mov dificuldade) 0 dificuldade "" )
-        executaOperacoes (executaMovimentos lista mov dificuldade) (dificuldade)
+        putStrLn $ "Contador de acoes: " ++ show (operacoes)
+        executaOperacoes (executaMovimentos lista mov dificuldade) (dificuldade) (operacoes + 1)
 
 criaArrayOrdenado :: Int -> [Int]
 criaArrayOrdenado tamanho = [1..(tamanho ^ 2)]
