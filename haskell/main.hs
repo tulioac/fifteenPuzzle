@@ -3,6 +3,10 @@ import Jogo
 
 main :: IO()
 main = do 
+    
+    clearScreen
+    putStrLn $ "Bem vindo ao Fifteen Puzzle Game\n\n"
+
     {- Exibe dificuldades -}
     exibeDificuldades
     {- Seleciona dificuldade -}
