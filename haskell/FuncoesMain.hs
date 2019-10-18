@@ -67,10 +67,10 @@ embaralhaArray array =
 
 mostraNaTela:: [Int] -> Int -> Int -> String -> String
 mostraNaTela (x:xs) contador dificuldade saida
-    | (contador == (dificuldade^2)-1) = (saida++((exibe(x)(dificuldade))++"]\n"))
-    | ((contador `mod` dificuldade) == 0) = mostraNaTela (xs) (contador+1) (dificuldade) (saida++("["++(exibe(x)(dificuldade))++","))
-    | ((contador `mod` dificuldade) == dificuldade-1) = mostraNaTela (xs) (contador+1) (dificuldade) (saida++((exibe(x)(dificuldade))++"]\n")) 
-    | otherwise = mostraNaTela (xs) (contador+1) (dificuldade) (saida++ ((exibe(x)(dificuldade))++",")) 
+    | (contador == (dificuldade^2)-1) = (saida++((exibe(x)(dificuldade))++"|\n"))
+    | ((contador `mod` dificuldade) == 0) = mostraNaTela (xs) (contador+1) (dificuldade) (saida++("|"++(exibe(x)(dificuldade))++","))
+    | ((contador `mod` dificuldade) == dificuldade-1) = mostraNaTela (xs) (contador+1) (dificuldade) (saida++((exibe(x)(dificuldade))++"|\n")) 
+    | otherwise = mostraNaTela (xs) (contador+1) (dificuldade) (saida++ ((exibe(x)(dificuldade))++"|")) 
 
 exibe:: Int -> Int -> String
 exibe numero dificuldade
