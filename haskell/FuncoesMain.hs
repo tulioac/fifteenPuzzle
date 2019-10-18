@@ -1,7 +1,6 @@
 module FuncoesMain (
     exibeDificuldades,
     solicitaDificuldade,
-    solicitaMovimento,
     criaArrayOrdenado,
     embaralhaArray,
     mostraNaTela,
@@ -12,6 +11,8 @@ module FuncoesMain (
 import System.Random
 import System.Process as SP
 import Jogo
+import Util
+
 
 
 exibeDificuldades :: IO()
@@ -32,7 +33,7 @@ solicitaDificuldade =
         else
             do
                 return (read (dificuldade))
-
+{-
 solicitaMovimento :: IO String
 solicitaMovimento =
     do
@@ -41,13 +42,27 @@ solicitaMovimento =
         if(movimento /= "w" && movimento /="s" && movimento /= "a" && movimento /= "d") then solicitaMovimento
         else
             do
-                return movimento
+                return movimento-}
+
+novoSolicitaMovimento :: IO String
+novoSolicitaMovimento =
+    do
+        putStrLn("Use as setas, para encaixar as peças no local vazio!")
+        u <- getKey
+        case u of
+            Just a -> case a of
+                U -> return "w"
+                D -> return "s"
+                L -> return "a"
+                R -> return "d"
+            Nothing -> novoSolicitaMovimento
+
 
 executaOperacoes:: [Int] -> Int -> IO ()
 executaOperacoes lista dificuldade = do
     if(isSorted (lista)) then putStrLn("Ganhoooooooou")
     else do
-        mov <- solicitaMovimento
+        mov <- novoSolicitaMovimento
         clearScreen
         putStrLn (mostraNaTela (executaMovimentos lista mov dificuldade) 0 dificuldade "" )
         executaOperacoes (executaMovimentos lista mov dificuldade) (dificuldade)
