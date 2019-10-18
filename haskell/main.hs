@@ -25,6 +25,8 @@ main = do
     executaOperacoes arrayEmbaralhado (dificuldade + 1) 1
 
     hSetEcho stdout True
+    hSetBuffering stdin LineBuffering
+
     putStrLn $ "Deseja jogar novamente? (s/n)"
 
     resposta <- getLine
