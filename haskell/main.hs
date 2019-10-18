@@ -1,6 +1,6 @@
-import FuncoesMain
-import Jogo
+import FuncoesIO
 import System.IO
+import Arrays
 
 main :: IO()
 main = do 
