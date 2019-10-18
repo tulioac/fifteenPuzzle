@@ -42,13 +42,14 @@ solicitaMovimento =
             do
                 return movimento
 
-mainHere:: [Int] -> IO ()
-mainHere lista = do
-    mov <- getLine
-    if(isSorted (lista)) then return ()
+executaOperacoes:: [Int] -> Int -> IO ()
+executaOperacoes lista dificuldade = do
+    if(isSorted (lista)) then putStrLn("Ganhoooooooou")
     else do
-        putStrLn (mostraNaTela (executaMovimentos lista mov) 0 2 "" )
-        mainHere (executaMovimentos lista mov)
+        mov <- getLine
+        clearScreen
+        putStrLn (mostraNaTela (executaMovimentos lista mov) 0 dificuldade "" )
+        executaOperacoes (executaMovimentos lista mov) (dificuldade)
 
 criaArrayOrdenado :: Int -> [Int]
 criaArrayOrdenado tamanho = [1..(tamanho ^ 2)]
@@ -78,7 +79,7 @@ exibe numero dificuldade
 
 clearScreen :: IO ()
 clearScreen = do
-    SP.system "cls"
+    SP.system "clear"
     return ()
 
 raizQuadradaInteira :: Int -> Int
