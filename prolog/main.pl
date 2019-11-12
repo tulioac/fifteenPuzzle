@@ -23,9 +23,9 @@ TODO: Dicas de acordo com a quantidade de movimentos
 TODO: Porcentagem de resolução
 --
 
-TODO: Implementar ranqueamento ao finalizar o jogo (salvar)
-    Solicitar o nome do jogador
-    Nome - Movimentos - 4x4
+TODO: Implementar ranqueamento ao finalizar o jogo (salvar) - Persistência
+        Solicitar o nome do jogador
+        "Nome - Movimentos - 4x4"
 
 TODO: Solicitar se quer jogar novamente e volta para início
 
