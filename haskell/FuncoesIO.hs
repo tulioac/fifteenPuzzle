@@ -60,7 +60,7 @@ executaOperacoes :: [Int] -> Int -> Int -> IO ()
 executaOperacoes lista dificuldade operacoes = do
     if(isSorted (lista)) then putStrLn("Ganhoooooooou")
     else do
-        mov <- solicitaMovimento
+        mov <- novoSolicitaMovimento
         if(mov == "") then putStrLn ("Perdeeeeeeeu")
         else
             do
@@ -90,5 +90,5 @@ exibe numero dificuldade
 
 clearScreen :: IO ()
 clearScreen = do
-    SP.system "cls"
+    SP.system "clear"
     return ()
