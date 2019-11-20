@@ -12,11 +12,17 @@ exibeDificuldades :-
 solicitaDificuldade(R) :- 
         read(R).
 
+criaArrayOrdenado(Dificuldade, Lista) :-
+        ValorFinal is (Dificuldade * Dificuldade),
+        numlist(1, ValorFinal, Lista).
+
 main :- 
         bemVindo,
         exibeDificuldades,
         solicitaDificuldade(Dificuldade),
-        writeln(Dificuldade).
+        writeln(Dificuldade),
+        criaArrayOrdenado(Dificuldade, Lista),
+        writeln(Lista),
         halt(0).
 
 
