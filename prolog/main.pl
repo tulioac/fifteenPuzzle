@@ -1,3 +1,25 @@
+:- initialization main.
+
+bemVindo :- writeln("Seja bem vindo ao Fifteen Puzzle - Versão Prolog!").
+
+exibeDificuldades :- 
+        writeln("Selecione a dificuldade desejada:"),
+        writeln("1 - Fácil"),
+        writeln("2 - Médio"),
+        writeln("3 - Difícil"),
+        writeln("4 - Impossível").
+
+solicitaDificuldade(R) :- 
+        read(R).
+
+main :- 
+        bemVindo,
+        exibeDificuldades,
+        solicitaDificuldade(Dificuldade),
+        writeln(Dificuldade).
+        halt(0).
+
+
 /* 
 
 Mensagem de bem vindo  
