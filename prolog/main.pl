@@ -38,7 +38,7 @@ DONE: Solicitar dificuldade     FIXME: Validar entrada
 
 DONE: Cria array de acordo com a dificuldade
 
-Embarralha array
+DONE: Embarralha array
 
 -- Execução do jogo
 Exibe array embaralhado
