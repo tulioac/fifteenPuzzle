@@ -16,13 +16,17 @@ criaArrayOrdenado(Dificuldade, Lista) :-
         ValorFinal is (Dificuldade * Dificuldade),
         numlist(1, ValorFinal, Lista).
 
+embaralhaArray(Array, ArrayEmbaralhado) :-
+        random_permutation(Array, ArrayEmbaralhado).
+
 main :- 
         bemVindo,
         exibeDificuldades,
         solicitaDificuldade(Dificuldade),
         writeln(Dificuldade),
         criaArrayOrdenado(Dificuldade, Lista),
-        writeln(Lista),
+        embaralhaArray(Lista, ListaEmbaralhada),
+        writeln(ListaEmbaralhada),
         halt(0).
 
 /* 
@@ -30,7 +34,7 @@ main :-
 DONE: Mensagem de bem vindo  
 
 DONE: Listar dificuldades
-DONE: Solicitar dificuldade
+DONE: Solicitar dificuldade     FIXME: Validar entrada
 
 DONE: Cria array de acordo com a dificuldade
 
