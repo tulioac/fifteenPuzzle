@@ -55,7 +55,7 @@ HELP: Solicita entrada (setas ou wasd)
 
 Executa movimento de acordo com a entrada
 
-DONE: Verifica ordenação            FIXME: Quando é true não exib 
+DONE: Verifica ordenação            FIXME: Quando é true não exibe
 
 EXTRA: Dicas de acordo com a quantidade de movimentos
 EXTRA: Porcentagem de resolução
