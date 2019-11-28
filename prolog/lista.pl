@@ -20,23 +20,33 @@ pegaIndiceEspacoVazio(Lista, Dificuldade, Indice) :-
 moveEsquerda(Lista, Tamanho, R) :-
     ValorMaximo is Tamanho ** 2,
     pegaIndiceEspacoVazio(Lista, ValorMaximo, IndiceEspacoVazio),
-    writeln(IndiceEspacoVazio),
     Modulo is (IndiceEspacoVazio mod Tamanho),
     Modulo \= 0,
-    writeln(Modulo),
-    IndiceMenosUm is IndiceEspacoVazio - 1,
-    trocaElementos(Lista, IndiceEspacoVazio, IndiceMenosUm, R).
+    Posicao is IndiceEspacoVazio - 1,
+    trocaElementos(Lista, IndiceEspacoVazio, Posicao, R).
 
 moveDireita(Lista, Tamanho, R) :-
     ValorMaximo is Tamanho ** 2,
     pegaIndiceEspacoVazio(Lista, ValorMaximo, IndiceEspacoVazio),
-    writeln(IndiceEspacoVazio),
     Modulo is (IndiceEspacoVazio mod Tamanho),
     Condicao is Tamanho - 1,
     Modulo \= Condicao,
-    writeln(Modulo),
-    IndiceMaisUm is IndiceEspacoVazio + 1,
-    trocaElementos(Lista, IndiceEspacoVazio, IndiceMaisUm, R).
+    Posicao is IndiceEspacoVazio + 1,
+    trocaElementos(Lista, IndiceEspacoVazio, Posicao, R).
+
+moveCima(Lista, Tamanho, R) :-
+    ValorMaximo is Tamanho ** 2,
+    pegaIndiceEspacoVazio(Lista, ValorMaximo, IndiceEspacoVazio),
+    IndiceEspacoVazio >= Tamanho, 
+    Posicao is IndiceEspacoVazio - Tamanho,
+    trocaElementos(Lista, IndiceEspacoVazio, Posicao, R).
+
+moveBaixo(Lista, Tamanho, R) :-
+    ValorMaximo is Tamanho ** 2,
+    pegaIndiceEspacoVazio(Lista, ValorMaximo, IndiceEspacoVazio),
+    IndiceEspacoVazio < Tamanho * (Tamanho - 1), 
+    Posicao is IndiceEspacoVazio + Tamanho,
+    trocaElementos(Lista, IndiceEspacoVazio, Posicao, R).
 
 exibeNaTela([], NumElementosArray) :- NumElementosArray =:= 0.
 exibeNaTela([H|T], TamanhoLinha, NumElementosArray) :-
