@@ -12,3 +12,9 @@ indiceDoElemento([_|Cauda], Elemento, Indice) :-
     indiceDoElemento(Cauda, Elemento, Indice1),
     !,
     Indice is Indice1 + 1.
+
+pegaIndiceEspacoVazio(Lista, Dificuldade, Indice) :-
+    Valor is (Dificuldade + 2) ** 2,
+    indiceDoElemento(Lista, Valor, Indice).
+
+
