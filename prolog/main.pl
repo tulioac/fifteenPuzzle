@@ -36,6 +36,7 @@ jogo(Tamanho, Contador, ListaOrdenada, ListaEmbaralhada) :-
     exibeArray(ListaEmbaralhada),
     write('Contador de movimentos: '),
     writeln(Contador),
+    imprimePorcentagem(ListaEmbaralhada, ListaOrdenada),
     solicitaMovimento(Movimento),
     (Movimento = w -> moveCima(ListaEmbaralhada, Tamanho, NovaLista);
     Movimento = s -> moveBaixo(ListaEmbaralhada, Tamanho, NovaLista);
