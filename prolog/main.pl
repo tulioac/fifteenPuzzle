@@ -49,7 +49,6 @@ jogo(Tamanho, Contador, ListaOrdenada, ListaEmbaralhada) :-
     writeln('Parabens, voce ganhou!');
     jogo(Tamanho, NovoContador, ListaOrdenada, NovaLista)).
 
-
 main:- 
     bemVindo,
     exibeDificuldades,
