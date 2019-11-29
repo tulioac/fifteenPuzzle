@@ -24,7 +24,7 @@ embaralhaArray(Array, ArrayEmbaralhado) :-
 
 verificaIgualdadeDeListas([], []).
 verificaIgualdadeDeListas([H1 | R1], [H2 | R2]) :-
-    H1 = H2,    
+    H1 = H2,
     verificaIgualdadeDeListas(R1, R2).
 
 % Verifica se a listas mudaram para acrescentar no contador
