@@ -1,5 +1,6 @@
 %:- initialization main.
 :- include('lista.pl').
+:- include('view.pl').
 
 bemVindo :- writeln('Seja bem vindo ao Fifteen Puzzle - Versão Prolog!').
 
@@ -33,7 +34,7 @@ verificaMudanca(ListaEmbaralhada, NovaLista, Contador, NovoContador) :-
     NovoContador is Contador + 1).
 
 jogo(Tamanho, Contador, ListaOrdenada, ListaEmbaralhada) :-
-    writeln(ListaEmbaralhada), % Exibe array em formato de matriz
+    exibeArray(ListaEmbaralhada),
     write('Contador de movimentos: '),
     writeln(Contador),
     solicitaMovimento(Movimento),
@@ -48,7 +49,7 @@ jogo(Tamanho, Contador, ListaOrdenada, ListaEmbaralhada) :-
     jogo(Tamanho, NovoContador, ListaOrdenada, NovaLista)).
 
 
-main :- 
+main:- 
     bemVindo,
     exibeDificuldades,
     solicitaDificuldade(Dificuldade),
