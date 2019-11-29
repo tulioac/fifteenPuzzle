@@ -2,23 +2,23 @@
 exibeNaTela([], TamanhoLinha, NumElementosArray) :- NumElementosArray =:= 0.
 
 exibeNaTela([H|T], TamanhoLinha, NumElementosArray):-
-    (NumElementosArray-1) mod TamanhoLinha =:= 0, H =:= TamanhoLinha**2, write("X "), writeln(" "), X2 is NumElementosArray-1, exibeNaTela(T, TamanhoLinha, X2).
+    (NumElementosArray-1) mod TamanhoLinha =:= 0, H =:= TamanhoLinha**2, write('X '), writeln(' '), X2 is NumElementosArray-1, exibeNaTela(T, TamanhoLinha, X2).
 
 exibeNaTela([H|T], TamanhoLinha, NumElementosArray):-
     (H =:= TamanhoLinha**2 ->
-        write("X "), write(" "), X2 is NumElementosArray-1, exibeNaTela(T, TamanhoLinha, X2));
+        write('X '), write(' '), X2 is NumElementosArray-1, exibeNaTela(T, TamanhoLinha, X2));
     ((NumElementosArray-1) mod (TamanhoLinha)) =:= 0 -> 
-        (H < 10 -> write("0")),
+        (H < 10 -> write('0')),
         writeln(H), X2 is NumElementosArray-1, exibeNaTela(T, TamanhoLinha, X2);
         
 
-    (H < 10 -> write("0"),write(H),
-        write(" "),
+    (H < 10 -> write('0'),write(H),
+        write(' '),
         X2 is NumElementosArray-1,
         exibeNaTela(T, TamanhoLinha,X2));
 
     write(H),
-    write(" "),
+    write(' '),
     X2 is NumElementosArray-1,
     exibeNaTela(T, TamanhoLinha,X2).
 

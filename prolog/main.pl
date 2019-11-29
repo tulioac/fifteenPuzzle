@@ -44,7 +44,7 @@ jogo(Tamanho, Contador, ListaOrdenada, ListaEmbaralhada) :-
     Movimento = d -> moveDireita(ListaEmbaralhada, Tamanho, NovaLista);
     writeln('Movimento invalido')),
     verificaMudanca(ListaEmbaralhada, NovaLista, Contador, NovoContador),
-    (verificaIgualdadeDeListas(NovaLista, ListaEmbaralhada) ->
+    (verificaIgualdadeDeListas(NovaLista, ListaOrdenada) ->
     writeln('Parabens, voce ganhou!');
     jogo(Tamanho, NovoContador, ListaOrdenada, NovaLista)).
 
