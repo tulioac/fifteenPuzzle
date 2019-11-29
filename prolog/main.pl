@@ -21,7 +21,10 @@ criaArrayOrdenado(Dificuldade, Lista) :-
     writeln(Lista).
 
 embaralhaArray(Array, ArrayEmbaralhado) :-
-    random_permutation(Array, ArrayEmbaralhado).
+    random_permutation(Array, ArrayEmbaralhado),
+    ehPossivel(ArrayEmbaralhado, R),
+    ((R =:= 0) -> embaralhaArray(Array, ArrayEmbaralhado)).
+
 
 verificaIgualdadeDeListas([], []).
 verificaIgualdadeDeListas([H1 | R1], [H2 | R2]) :-
@@ -60,6 +63,22 @@ main:-
     Contador is 0,
     jogo(Tamanho, Contador, ListaOrdenada, ListaEmbaralhada),
     halt(0).
+
+par(N):- N mod 2 =:= 0.
+impar(N):- N mod 2 =:= 1.
+
+
+contadorDeInversoes(ArrayEmbaralhado, Inversoes) :- Inversoes is 0.
+
+ehPossivel(ArrayEmbaralhado, R) :-
+    contadorDeInversoes(ArrayEmbaralhado,Inversoes),
+    (impar(Tamanho) -> (par(Inversoes) -> R is 1);
+    R is 0);
+    indiceDoElemento(ArrayEmbaralhado, Tamanho**2, Indice),
+    (impar(Indice) -> (par(Inversoes) -> R is 1);
+    R is 0);
+    (impar(Inversoes)- R is 1);
+    R is 0.
 
 /* 
 

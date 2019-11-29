@@ -35,7 +35,7 @@ exibeArray(A):-
 
 /*Acha elemento pelo indice*/
 
-indiceDoElemento([Elemento|_], Elemento, 0) :- !.
+indiceDoElemento([Elemento|_], Elemento, R) :- !.
 indiceDoElemento([_|Cauda], Elemento, Indice) :-
     indiceDoElemento(Cauda, Elemento, Indice1),
     !,
