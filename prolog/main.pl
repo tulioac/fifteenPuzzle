@@ -56,12 +56,12 @@ jogo(Tamanho, Contador, ListaOrdenada, ListaEmbaralhada) :-
     writeln(Contador),
     imprimePorcentagem(ListaEmbaralhada, ListaOrdenada),
     solicitaMovimento(Movimento),
-    (Movimento = w -> limparTela, moveCima(ListaEmbaralhada, Tamanho, NovaLista);
-    Movimento = s -> limparTela, moveBaixo(ListaEmbaralhada, Tamanho, NovaLista);
-    Movimento = a -> limparTela, moveEsquerda(ListaEmbaralhada, Tamanho, NovaLista);
-    Movimento = d -> limparTela, moveDireita(ListaEmbaralhada, Tamanho, NovaLista);
+    (Movimento = s -> limparTela, moveCima(ListaEmbaralhada, Tamanho, NovaLista);
+    Movimento = w -> limparTela, moveBaixo(ListaEmbaralhada, Tamanho, NovaLista);
+    Movimento = d -> limparTela, moveEsquerda(ListaEmbaralhada, Tamanho, NovaLista);
+    Movimento = a -> limparTela, moveDireita(ListaEmbaralhada, Tamanho, NovaLista);
     Movimento = t -> limparTela, exibeDicas;
-    Movimento = cheat -> Dificuldade is Tamanho-2, criaArrayOrdenado(Dificuldade, ListaEmbaralhada);
+    Movimento = cheat -> Dificuldade is Tamanho-2, criaArrayOrdenado(Dificuldade, NovaLista);
     writeln('Movimento invalido')),
     verificaMudanca(ListaEmbaralhada, NovaLista, Contador, NovoContador),
     (verificaIgualdadeDeListas(NovaLista, ListaOrdenada) ->
@@ -83,8 +83,7 @@ main:-
         embaralhaArray(ListaOrdenada, ListaEmbaralhada),
         Contador is 0,
         jogo(Tamanho, Contador, ListaOrdenada, ListaEmbaralhada);
-    Opcao =:= 2 -> ordenaRanking(RankingOrdenado),writeln('RANKING'), imprimeRanking(RankingOrdenado);
-    Opcao =:= 3 -> writeln('Sair')),
+    Opcao =:= 2 -> ordenaRanking(RankingOrdenado),writeln('RANKING'), imprimeRanking(RankingOrdenado)),
     halt(0).
 
 ordenaRanking(ListaOrdenada) :-

@@ -20,5 +20,4 @@ exibeBemVindo:-
 exibeOpcoes:- 
     writeln('Menu Inicial:'),
     writeln('i   - Jogar!'),
-    writeln('ii  - Ranking'),
-    writeln('iii - Sair').
+    writeln('ii  - Ranking').
