@@ -58,17 +58,10 @@ solicitaMovimento(R) :-
 
     read(R).
 
-/* 
-solicitaMovimento(R) :-
-    writeln('Digite o movimento desejado w / a / s / d'),
-    read(R),
-    validaMovimento(R).
+verificaIguais([], [], Contador, Contador).
+verificaIguais([H|T1],[H|T2], Contador, Saida) :- 
+    NewContador is Contador + 1, verificaIguais(T1,T2,NewContador, Saida).
+verificaIguais([_|T1],[_|T2],Contador,Saida) :- verificaIguais(T1,T2,Contador,Saida).
 
-validaMovimento(w). 
-validaMovimento(a).
-validaMovimento(s).
-validaMovimento(d).
-validaMovimento(R) :- 
-    writeln('Movimento invalido, tente novamente.'),
-    solicitaMovimento(R).
- */
+imprimePorcentagem(ListaJogo, ListaOrdenada, Porcentagem):-
+    verificaIguais(ListaJogo, ListaOrdenada, 0, R),length(ListaJogo, TamanhoLista), Porcentagem is (R/TamanhoLista)*100.
