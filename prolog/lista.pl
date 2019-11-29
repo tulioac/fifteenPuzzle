@@ -56,3 +56,23 @@ exibeNaTela([H|T], TamanhoLinha, NumElementosArray) :-
     write(" "),
     X2 is NumElementosArray-1,
     exibeNaTela(T, TamanhoLinha,X2).
+
+
+solicitaMovimento(R) :-
+    writeln('Digite o movimento desejado w / a / s / d'),
+    read(R).
+
+/* 
+solicitaMovimento(R) :-
+    writeln('Digite o movimento desejado w / a / s / d'),
+    read(R),
+    validaMovimento(R).
+
+validaMovimento(w). 
+validaMovimento(a).
+validaMovimento(s).
+validaMovimento(d).
+validaMovimento(R) :- 
+    writeln('Movimento invalido, tente novamente.'),
+    solicitaMovimento(R).
+ */
