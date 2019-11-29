@@ -68,5 +68,5 @@ imprimePorcentagem(ListaJogo, ListaOrdenada) :-
     length(ListaJogo, TamanhoLista), 
     Porcentagem is (R/TamanhoLista)*100,
     write('Porcentagem completa: '),
-    write(Porcentagem),
-    writeln('%').
+    format('~0f%', Porcentagem),
+    writeln('').
