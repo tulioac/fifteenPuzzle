@@ -21,6 +21,15 @@ solicitaDificuldade(R) :-
         main;
     write('')).
 
+ranking([]).
+
+appendLista(Lista, Elem, [Elem|Lista]).
+setLista(Elem) :- retract(ranking(X)),
+    appendLista(X, Elem, Saida),
+    assert(ranking(Saida)).
+
+:- dynamic ranking/1.
+
 criaArrayOrdenado(Dificuldade, Lista) :-
     ValorFinal is (Dificuldade + 2) ** 2, 
     numlist(1, ValorFinal, Lista).
