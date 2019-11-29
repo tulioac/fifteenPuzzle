@@ -15,7 +15,7 @@ exibeDificuldades :-
 
 solicitaDificuldade(R) :- 
     read(R),
-    (R < 1 ->
+    (R < 0 ->
         writeln('Opcao Invalida! Tente novamente.'),
         main;
         R > 4 -> 
@@ -23,7 +23,7 @@ solicitaDificuldade(R) :-
         main;
     write('')).
 
-ranking([]).
+ranking([[nome, 0]]).
 
 appendRanking(Lista, Elem, [Elem|Lista]).
 setRanking(Elem) :- 
@@ -51,68 +51,44 @@ verificaMudanca(ListaEmbaralhada, NovaLista, Contador, NovoContador) :-
     NovoContador is Contador + 1).
 
 jogo(Tamanho, Contador, ListaOrdenada, ListaEmbaralhada) :-
-    limparTela,
     exibeArray(ListaEmbaralhada),
     write('Contador de movimentos: '),
     writeln(Contador),
     imprimePorcentagem(ListaEmbaralhada, ListaOrdenada),
     solicitaMovimento(Movimento),
-    (Movimento = w -> moveCima(ListaEmbaralhada, Tamanho, NovaLista);
-    Movimento = s -> moveBaixo(ListaEmbaralhada, Tamanho, NovaLista);
-    Movimento = a -> moveEsquerda(ListaEmbaralhada, Tamanho, NovaLista);
-    Movimento = d -> moveDireita(ListaEmbaralhada, Tamanho, NovaLista);
-    Movimento = t -> exibeDicas;
+    (Movimento = w -> limparTela, moveCima(ListaEmbaralhada, Tamanho, NovaLista);
+    Movimento = s -> limparTela, moveBaixo(ListaEmbaralhada, Tamanho, NovaLista);
+    Movimento = a -> limparTela, moveEsquerda(ListaEmbaralhada, Tamanho, NovaLista);
+    Movimento = d -> limparTela, moveDireita(ListaEmbaralhada, Tamanho, NovaLista);
+    Movimento = t -> limparTela, exibeDicas;
+    Movimento = cheat -> Dificuldade is Tamanho-2, criaArrayOrdenado(Dificuldade, ListaEmbaralhada);
     writeln('Movimento invalido')),
     verificaMudanca(ListaEmbaralhada, NovaLista, Contador, NovoContador),
     (verificaIgualdadeDeListas(NovaLista, ListaOrdenada) ->
     writeln('Parabens, voce ganhou!'),
-    insereNoRanking(Contador);
+    writeln('Digite seu nome:'),
+    read(Nome),
+    setRanking([Nome, Contador]), ranking(X),
+    main;
     jogo(Tamanho, NovoContador, ListaOrdenada, NovaLista)).
 
 main:- 
+    limparTela,
     exibeMenu(Opcao),
     (Opcao =:= 1 -> 
         exibeDificuldades,
-        solicitaDificuldade(Dificuldade),
+        solicitaDificuldade(Dificuldade), limparTela,
         criaArrayOrdenado(Dificuldade, ListaOrdenada),
         Tamanho is Dificuldade + 2,
         embaralhaArray(ListaOrdenada, ListaEmbaralhada),
         Contador is 0,
         jogo(Tamanho, Contador, ListaOrdenada, ListaEmbaralhada);
-    Opcao =:= 2 -> writeln('Ranking');
+    Opcao =:= 2 -> ranking(X), imprimeRanking(X);
     Opcao =:= 3 -> writeln('Sair')),
     halt(0).
 
-/* 
-
-
-DONE: Mensagem de bem vindo  
-
-DONE: Listar dificuldades
-DONE: Solicitar dificuldade         FIXME: Validar entrada
-
-DONE: Cria array de acordo com a dificuldade
-
-DONE: Embarralha array
-
--- Execução do jogo
-Exibe array embaralhado
-Exibe contador
-
-HELP: Solicita entrada (setas ou wasd)
-
-Executa movimento de acordo com a entrada
-
-DONE: Verifica ordenação            FIXME: Quando é true não exibe
-
-EXTRA: Dicas de acordo com a quantidade de movimentos
-EXTRA: Porcentagem de resolução
---
-
-EXTRA: Implementar ranqueamento ao finalizar o jogo (salvar) - Persistência
-        Solicitar o nome do jogador
-        'Nome - Movimentos - 4x4'
-
-EXTRA: Solicitar se quer jogar novamente e volta para início
-
-*/
+imprimeRanking([]):- nl,nl,writeln('Digite menu. para exibir o menu: '),read(X), main.
+imprimeRanking([[Nome,Contador]|T]):-
+    limparTela,writeln('RANKING DE JOGADORES'), write(Nome), write('..........'),
+    Pontuacao is Contador*10,writeln(Pontuacao),
+    imprimeRanking(T).

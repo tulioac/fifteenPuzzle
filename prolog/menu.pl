@@ -8,9 +8,9 @@ recebeOpcaoValida(OpcaoEscolhida):-
     exibeOpcoes,
     writeln('Escolha uma opção: '),
     read(Opcao),
-    ((Opcao = i -> OpcaoEscolhida = 1);
+    (Opcao = i -> OpcaoEscolhida = 1);
     (Opcao = ii -> OpcaoEscolhida = 2);
-    (Opcao = iii -> OpcaoEscolhida = 3));
+    (Opcao = iii -> OpcaoEscolhida = 3);
     limparTela,OpcaoEscolhida = OpcaoInv, recebeOpcaoValida(OpcaoInv).
 
 exibeBemVindo:-

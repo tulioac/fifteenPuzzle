@@ -42,11 +42,10 @@ indiceDoElemento([_|Cauda], Elemento, Indice) :-
     Indice is Indice1 + 1.
 
 exibeDicas :-
+    limparTela,
     writeln('Dica 1 - Para preencher as primeiras fileiras, tente colocar os numeros de ordem crescente da esquerda para direita'),
-    writeln('Dica 2 - Nas ultimas duas linhas, para preencher tente manter intercalados os numeros da penultima e ultima fileira').
-
-/*Apagar valor específico*/
-
+    writeln('Dica 2 - Nas ultimas duas linhas, para preencher tente manter intercalados os numeros da penultima e ultima fileira'),
+    nl.
 
 limparTela :-
-    nl, nl, nl, nl, nl, nl, nl, nl, nl, nl, nl, nl, nl, nl, nl.
+    nl, nl, nl, nl, nl, nl, nl, nl, nl, nl, nl, nl, nl, nl, nl, nl, nl, nl, nl,nl, nl, nl, nl, nl, nl, nl.
