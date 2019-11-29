@@ -49,7 +49,13 @@ moveBaixo(Lista, Tamanho, R) :-
     R = Lista).
 
 solicitaMovimento(R) :-
-    writeln('Digite o movimento desejado w / a / s / d'),
+    writeln('Digite o movimento desejado:'),
+    writeln("(w.) Mover para cima"),
+    writeln("(s.) Mover para baixo"),
+    writeln("(e.) Mover para esquerda"),
+    writeln("(d.) Mover para direita"),
+    writeln("(t.) Caso deseje alguma dica"),
+
     read(R).
 
 /* 
