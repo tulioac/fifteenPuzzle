@@ -13,12 +13,12 @@ exibeDificuldades :-
 
 solicitaDificuldade(R) :- 
     read(R),
-    (R < 1 -> 
-        exibeDificuldades,
-        solicitaDificuldade(R);
+    (R < 1 ->
+        writeln('Opcao Invalida! Tente novamente.'),
+        main;
         R > 4 -> 
-        exibeDificuldades,
-        solicitaDificuldade(R);
+        writeln('Opcao Invalida! Tente novamente.'),
+        main;
     write('')).
 
 criaArrayOrdenado(Dificuldade, Lista) :-
@@ -57,7 +57,6 @@ jogo(Tamanho, Contador, ListaOrdenada, ListaEmbaralhada) :-
     jogo(Tamanho, NovoContador, ListaOrdenada, NovaLista)).
 
 main:- 
-    bemVindo,
     exibeDificuldades,
     solicitaDificuldade(Dificuldade),
     criaArrayOrdenado(Dificuldade, ListaOrdenada),
