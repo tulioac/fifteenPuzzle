@@ -57,18 +57,3 @@ solicitaMovimento(R) :-
     writeln('(t.) Caso deseje alguma dica'),
 
     read(R).
-
-/* 
-solicitaMovimento(R) :-
-    writeln('Digite o movimento desejado w / a / s / d'),
-    read(R),
-    validaMovimento(R).
-
-validaMovimento(w). 
-validaMovimento(a).
-validaMovimento(s).
-validaMovimento(d).
-validaMovimento(R) :- 
-    writeln('Movimento invalido, tente novamente.'),
-    solicitaMovimento(R).
- */
