@@ -83,12 +83,16 @@ main:-
         embaralhaArray(ListaOrdenada, ListaEmbaralhada),
         Contador is 0,
         jogo(Tamanho, Contador, ListaOrdenada, ListaEmbaralhada);
-    Opcao =:= 2 -> ranking(X), imprimeRanking(X);
+    Opcao =:= 2 -> ordenaRanking(RankingOrdenado),writeln('RANKING'), imprimeRanking(RankingOrdenado);
     Opcao =:= 3 -> writeln('Sair')),
     halt(0).
 
+ordenaRanking(ListaOrdenada) :-
+    ranking(Lista),
+    sort(2, @<, Lista, ListaOrdenada).
+
 imprimeRanking([]):- nl,nl,writeln('Digite menu. para exibir o menu: '),read(X), main.
 imprimeRanking([[Nome,Contador]|T]):-
-    limparTela,writeln('RANKING DE JOGADORES'), write(Nome), write('..........'),
+    write(Nome), write('..........'),
     Pontuacao is Contador*10,writeln(Pontuacao),
     imprimeRanking(T).
