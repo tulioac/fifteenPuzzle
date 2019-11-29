@@ -41,4 +41,9 @@ indiceDoElemento([_|Cauda], Elemento, Indice) :-
     !,
     Indice is Indice1 + 1.
 
+exibeDicas() :-
+    writeln("Dica 1 - Para preencher as primeiras fileiras, tente colocar os numeros de ordem crescente da esquerda para direita"),
+    writeln("Dica 2 - Nas ultimas duas linhas, para preencher tente manter intercalados os numeros da penultima e ultima fileira"),
+    writeln("Dica Extra - Saiba quando desistir, nem sempre o jogo é possivel de se completar").
+
 /*Apagar valor específico*/
