@@ -15,7 +15,9 @@ solicitaDificuldade(R) :-
 
 criaArrayOrdenado(Dificuldade, Lista) :-
     ValorFinal is (Dificuldade + 2) ** 2, 
-    numlist(1, ValorFinal, Lista).
+    numlist(1, ValorFinal, Lista),
+    writeln('Lista'),
+    writeln(Lista).
 
 embaralhaArray(Array, ArrayEmbaralhado) :-
     random_permutation(Array, ArrayEmbaralhado).
@@ -50,8 +52,8 @@ main :-
     bemVindo,
     exibeDificuldades,
     solicitaDificuldade(Dificuldade),
+    criaArrayOrdenado(Dificuldade, ListaOrdenada),
     Tamanho is Dificuldade + 2,
-    criaArrayOrdenado(Tamanho, ListaOrdenada),
     embaralhaArray(ListaOrdenada, ListaEmbaralhada),
     Contador is 0,
     jogo(Tamanho, Contador, ListaOrdenada, ListaEmbaralhada),
