@@ -5,16 +5,16 @@ bemVindo :- writeln('Seja bem vindo ao Fifteen Puzzle - Versão Prolog!').
 
 exibeDificuldades :- 
     writeln('Selecione a dificuldade desejada:'),
-    writeln('1 - Fácil'),
-    writeln('2 - Médio'),
-    writeln('3 - Difícil'),
-    writeln('4 - Impossível').
+    writeln('1 - Facil'),
+    writeln('2 - Medio'),
+    writeln('3 - Dificil'),
+    writeln('4 - Impossivel').
 
 solicitaDificuldade(R) :- 
     read(R).
 
 criaArrayOrdenado(Dificuldade, Lista) :-
-    ValorFinal is (Dificuldade * Dificuldade),
+    ValorFinal is (Dificuldade + 2) ** 2, 
     numlist(1, ValorFinal, Lista).
 
 embaralhaArray(Array, ArrayEmbaralhado) :-
@@ -42,7 +42,7 @@ jogo(Tamanho, Contador, ListaOrdenada, ListaEmbaralhada) :-
     writeln('Movimento invalido')),
     verificaMudanca(ListaEmbaralhada, NovaLista, Contador, NovoContador),
     (verificaIgualdadeDeListas(NovaLista, ListaEmbaralhada) ->
-    writeln('Parabéns, você ganhou!');
+    writeln('Parabens, voce ganhou!');
     jogo(Tamanho, NovoContador, ListaOrdenada, NovaLista)).
 
 
