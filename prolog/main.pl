@@ -5,14 +5,21 @@
 bemVindo :- writeln('Seja bem vindo ao Fifteen Puzzle - Versão Prolog!').
 
 exibeDificuldades :- 
-    writeln('Selecione a dificuldade desejada:'),
+    writeln('Selecione a dificuldade desejada, De 1 a 4:'),
     writeln('1 - Facil'),
     writeln('2 - Medio'),
     writeln('3 - Dificil'),
     writeln('4 - Impossivel').
 
 solicitaDificuldade(R) :- 
-    read(R).
+    read(R),
+    (R < 1 -> 
+        exibeDificuldades,
+        solicitaDificuldade(R);
+        R > 4 -> 
+        exibeDificuldades,
+        solicitaDificuldade(R);
+    write('')).
 
 criaArrayOrdenado(Dificuldade, Lista) :-
     ValorFinal is (Dificuldade + 2) ** 2, 
