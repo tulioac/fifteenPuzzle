@@ -1,13 +1,14 @@
 %:- initialization main.
+:- include('lista.pl').
 
-bemVindo :- writeln("Seja bem vindo ao Fifteen Puzzle - Versão Prolog!").
+bemVindo :- writeln('Seja bem vindo ao Fifteen Puzzle - Versão Prolog!').
 
 exibeDificuldades :- 
-    writeln("Selecione a dificuldade desejada:"),
-    writeln("1 - Fácil"),
-    writeln("2 - Médio"),
-    writeln("3 - Difícil"),
-    writeln("4 - Impossível").
+    writeln('Selecione a dificuldade desejada:'),
+    writeln('1 - Fácil'),
+    writeln('2 - Médio'),
+    writeln('3 - Difícil'),
+    writeln('4 - Impossível').
 
 solicitaDificuldade(R) :- 
     read(R).
@@ -19,21 +20,41 @@ criaArrayOrdenado(Dificuldade, Lista) :-
 embaralhaArray(Array, ArrayEmbaralhado) :-
     random_permutation(Array, ArrayEmbaralhado).
 
-verificaOrdenacao([], []).
-
-verificaOrdenacao([H1 | R1], [H2 | R2]) :-
+verificaIgualdadeDeListas([], []).
+verificaIgualdadeDeListas([H1 | R1], [H2 | R2]) :-
     H1 = H2,
-    verificaOrdenacao(R1, R2).
+    verificaIgualdadeDeListas(R1, R2).
+
+% Verifica se a listas mudaram para acrescentar no contador
+verificaMudanca(ListaEmbaralhada, NovaLista, Contador, NovoContador) :-
+    (verificaIgualdadeDeListas(ListaEmbaralhada, NovaLista) -> NovoContador = Contador;
+    NovoContador is Contador + 1).
+
+jogo(Tamanho, Contador, ListaOrdenada, ListaEmbaralhada) :-
+    writeln(ListaEmbaralhada), % Exibe array em formato de matriz
+    write('Contador de movimentos: '),
+    writeln(Contador),
+    solicitaMovimento(Movimento),
+    (Movimento = w -> moveCima(ListaEmbaralhada, Tamanho, NovaLista);
+    Movimento = s -> moveBaixo(ListaEmbaralhada, Tamanho, NovaLista);
+    Movimento = a -> moveEsquerda(ListaEmbaralhada, Tamanho, NovaLista);
+    Movimento = d -> moveDireita(ListaEmbaralhada, Tamanho, NovaLista);
+    writeln('Movimento invalido')),
+    verificaMudanca(ListaEmbaralhada, NovaLista, Contador, NovoContador),
+    (verificaIgualdadeDeListas(NovaLista, ListaEmbaralhada) ->
+    writeln('Parabéns, você ganhou!');
+    jogo(Tamanho, NovoContador, ListaOrdenada, NovaLista)).
+
 
 main :- 
     bemVindo,
     exibeDificuldades,
     solicitaDificuldade(Dificuldade),
-    writeln(Dificuldade),
-    criaArrayOrdenado(Dificuldade, ListaOrdenada),
+    Tamanho is Dificuldade + 2,
+    criaArrayOrdenado(Tamanho, ListaOrdenada),
     embaralhaArray(ListaOrdenada, ListaEmbaralhada),
-    writeln(ListaEmbaralhada),
-    verificaOrdenacao(ListaOrdenada, ListaEmbaralhada),
+    Contador is 0,
+    jogo(Tamanho, Contador, ListaOrdenada, ListaEmbaralhada),
     halt(0).
 
 /* 
@@ -63,7 +84,7 @@ EXTRA: Porcentagem de resolução
 
 EXTRA: Implementar ranqueamento ao finalizar o jogo (salvar) - Persistência
         Solicitar o nome do jogador
-        "Nome - Movimentos - 4x4"
+        'Nome - Movimentos - 4x4'
 
 EXTRA: Solicitar se quer jogar novamente e volta para início
 
