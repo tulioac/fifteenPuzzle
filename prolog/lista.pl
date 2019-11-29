@@ -53,7 +53,7 @@ exibeNaTela([H|T], TamanhoLinha, NumElementosArray) :-
     ((NumElementosArray-1) mod (TamanhoLinha)) =:= 0 ->
         write(H), nl, X2 is NumElementosArray-1, exibeNaTela(T, TamanhoLinha, X2);
     write(H),
-    write(" "),
+    write(' '),
     X2 is NumElementosArray-1,
     exibeNaTela(T, TamanhoLinha,X2).
 
