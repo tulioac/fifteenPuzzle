@@ -1,6 +1,8 @@
 %:- initialization main.
 :- include('lista.pl').
 :- include('view.pl').
+:- include('menu.pl').
+:- include('rank.pl').
 
 bemVindo :- writeln('Seja bem vindo ao Fifteen Puzzle - Versão Prolog!').
 
@@ -23,9 +25,10 @@ solicitaDificuldade(R) :-
 
 ranking([]).
 
-appendLista(Lista, Elem, [Elem|Lista]).
-setLista(Elem) :- retract(ranking(X)),
-    appendLista(X, Elem, Saida),
+appendRanking(Lista, Elem, [Elem|Lista]).
+setRanking(Elem) :- 
+    retract(ranking(X)),
+    appendRanking(X, Elem, Saida),
     assert(ranking(Saida)).
 
 :- dynamic ranking/1.
@@ -62,17 +65,22 @@ jogo(Tamanho, Contador, ListaOrdenada, ListaEmbaralhada) :-
     writeln('Movimento invalido')),
     verificaMudanca(ListaEmbaralhada, NovaLista, Contador, NovoContador),
     (verificaIgualdadeDeListas(NovaLista, ListaOrdenada) ->
-    writeln('Parabens, voce ganhou!');
+    writeln('Parabens, voce ganhou!'),
+    insereNoRanking(Contador);
     jogo(Tamanho, NovoContador, ListaOrdenada, NovaLista)).
 
 main:- 
-    exibeDificuldades,
-    solicitaDificuldade(Dificuldade),
-    criaArrayOrdenado(Dificuldade, ListaOrdenada),
-    Tamanho is Dificuldade + 2,
-    embaralhaArray(ListaOrdenada, ListaEmbaralhada),
-    Contador is 0,
-    jogo(Tamanho, Contador, ListaOrdenada, ListaEmbaralhada),
+    exibeMenu(Opcao),
+    (Opcao =:= 1 -> 
+        exibeDificuldades,
+        solicitaDificuldade(Dificuldade),
+        criaArrayOrdenado(Dificuldade, ListaOrdenada),
+        Tamanho is Dificuldade + 2,
+        embaralhaArray(ListaOrdenada, ListaEmbaralhada),
+        Contador is 0,
+        jogo(Tamanho, Contador, ListaOrdenada, ListaEmbaralhada);
+    Opcao =:= 2 -> writeln('Ranking');
+    Opcao =:= 3 -> writeln('Sair')),
     halt(0).
 
 /* 

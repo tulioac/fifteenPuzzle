@@ -6,7 +6,7 @@ exibeMenu(OpcaoEscolhida):-
 
 recebeOpcaoValida(OpcaoEscolhida):-
     exibeOpcoes,
-    writeln("Escolha uma opção: "),
+    writeln('Escolha uma opção: '),
     read(Opcao),
     ((Opcao = i -> OpcaoEscolhida = 1);
     (Opcao = ii -> OpcaoEscolhida = 2);
@@ -14,7 +14,7 @@ recebeOpcaoValida(OpcaoEscolhida):-
     limparTela,OpcaoEscolhida = OpcaoInv, recebeOpcaoValida(OpcaoInv).
 
 exibeBemVindo:-
-    writeln("FIFTEEN PUZZLE!!!!!!!!!"),
+    writeln('FIFTEEN PUZZLE!!!!!!!!!'),
     nl,nl,nl.
 
 exibeOpcoes:- 
