@@ -46,3 +46,7 @@ exibeDicas :-
     writeln('Dica 2 - Nas ultimas duas linhas, para preencher tente manter intercalados os numeros da penultima e ultima fileira').
 
 /*Apagar valor específico*/
+
+
+limparTela :-
+    nl, nl, nl, nl, nl, nl, nl, nl, nl, nl, nl, nl, nl, nl, nl.

@@ -16,9 +16,7 @@ solicitaDificuldade(R) :-
 
 criaArrayOrdenado(Dificuldade, Lista) :-
     ValorFinal is (Dificuldade + 2) ** 2, 
-    numlist(1, ValorFinal, Lista),
-    writeln('Lista'),
-    writeln(Lista).
+    numlist(1, ValorFinal, Lista).
 
 embaralhaArray(Array, ArrayEmbaralhado) :-
     random_permutation(Array, ArrayEmbaralhado).
@@ -34,6 +32,7 @@ verificaMudanca(ListaEmbaralhada, NovaLista, Contador, NovoContador) :-
     NovoContador is Contador + 1).
 
 jogo(Tamanho, Contador, ListaOrdenada, ListaEmbaralhada) :-
+    limparTela,
     exibeArray(ListaEmbaralhada),
     write('Contador de movimentos: '),
     writeln(Contador),
@@ -62,6 +61,7 @@ main:-
     halt(0).
 
 /* 
+
 
 DONE: Mensagem de bem vindo  
 

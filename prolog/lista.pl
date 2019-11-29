@@ -58,10 +58,4 @@ solicitaMovimento(R) :-
 
     read(R).
 
-verificaIguais([], [], Contador, Contador).
-verificaIguais([H|T1],[H|T2], Contador, Saida) :- 
-    NewContador is Contador + 1, verificaIguais(T1,T2,NewContador, Saida).
-verificaIguais([_|T1],[_|T2],Contador,Saida) :- verificaIguais(T1,T2,Contador,Saida).
-
-imprimePorcentagem(ListaJogo, ListaOrdenada, Porcentagem):-
-    verificaIguais(ListaJogo, ListaOrdenada, 0, R),length(ListaJogo, TamanhoLista), Porcentagem is (R/TamanhoLista)*100.
+    
